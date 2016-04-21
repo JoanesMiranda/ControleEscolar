@@ -11,4 +11,35 @@ package br.com.controleescolar.model;
  */
 public class Turma {
     
+    private int idturma;
+    private String nome;
+
+    /**
+     * @return the idturma
+     */
+    public int getIdturma() {
+        return idturma;
+    }
+
+    /**
+     * @param idturma the idturma to set
+     */
+    public void setIdturma(int idturma) {
+        this.idturma = idturma;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
 }

@@ -11,4 +11,35 @@ package br.com.controleescolar.model;
  */
 public class Professor {
     
+    private int idprofessor;
+    private String nome;
+
+    /**
+     * @return the idprofessor
+     */
+    public int getIdprofessor() {
+        return idprofessor;
+    }
+
+    /**
+     * @param idprofessor the idprofessor to set
+     */
+    public void setIdprofessor(int idprofessor) {
+        this.idprofessor = idprofessor;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
 }

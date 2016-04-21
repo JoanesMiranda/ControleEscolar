@@ -9,7 +9,7 @@ public class ConexaoDao {
     public Statement stm;
     public ResultSet rs;
     String driver = "com.mysql.jdbc.Driver";
-    private String caminho = "jdbc:mysql://localhost:3306/ControleEscolar";;
+    private String caminho = "jdbc:mysql://localhost:3306/controledepresenca";;
     private String usuario = "root";;
     private String senha = "root";;
     public Connection conn;
@@ -24,6 +24,7 @@ public class ConexaoDao {
             JOptionPane.showMessageDialog(null,"erro ao conectar com o BD!!"+ex.getMessage());
         }     
     }
+    
     public void execultaSQL(String sql){
         try {
             stm = conn.createStatement(rs.TYPE_SCROLL_SENSITIVE,rs.CONCUR_READ_ONLY);
@@ -31,11 +32,9 @@ public class ConexaoDao {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"erro ao execultarSQL"+ex.getMessage());
         }
-       
     }
     
     public void fecharBanco() {
-    
         try {
             conn.close();
         } catch (SQLException ex) {

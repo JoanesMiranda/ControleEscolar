@@ -5,10 +5,29 @@
  */
 package br.com.controleescolar.controller;
 
+import br.com.controleescolar.model.Disciplina;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Joanes
  */
-public class DisciplinaDao {
+public class DisciplinaDao extends ConexaoDao{
     
+    public void salvar(Disciplina disciplina){
+        abrirBanco();
+            try {
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO disciplina(nome,FK_professor)"
+                        + "VALUES(?,?)");
+                stm.setString(1, disciplina.getNome());
+                stm.setInt(2, disciplina.getIdprofessor());
+                stm.execute();
+                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela disciplina");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"erro ao salvar em disciplina"+ex.getMessage());
+            }
+        fecharBanco();
+    }
 }
