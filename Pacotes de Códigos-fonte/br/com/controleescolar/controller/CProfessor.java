@@ -5,7 +5,7 @@
  */
 package br.com.controleescolar.controller;
 
-import br.com.controleescolar.model.Turma;
+import br.com.controleescolar.model.Professor;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -14,18 +14,17 @@ import javax.swing.JOptionPane;
  *
  * @author Joanes
  */
-public class TurmaDao extends ConexaoDao{
+public class CProfessor extends Conexao{
     
-    public void salvar(Turma turma){
+    public void salvar(Professor professor){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO turma(nome)"
-                        + "VALUES(?)");
-                stm.setString(1, turma.getNome());
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO professor(nome) VALUES(?)");
+                stm.setString(1, professor.getNome());
                 stm.execute();
-                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela turma");
+                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela professor");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"erro ao salvar em turma"+ex.getMessage());
+                JOptionPane.showMessageDialog(null,"erro ao salvar em professor"+ex.getMessage());
             }
         fecharBanco();
     }

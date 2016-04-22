@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author Joanes
  */
-public class ChamadaDao extends ConexaoDao{
+public class CChamada extends Conexao{
 
     public void salvar(Chamada chamada){
         abrirBanco();

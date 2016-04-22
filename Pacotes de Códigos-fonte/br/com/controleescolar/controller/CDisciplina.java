@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author Joanes
  */
-public class DisciplinaDao extends ConexaoDao{
+public class CDisciplina extends Conexao{
     
     public void salvar(Disciplina disciplina){
         abrirBanco();

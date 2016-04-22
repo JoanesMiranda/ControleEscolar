@@ -4,7 +4,7 @@ package br.com.controleescolar.controller;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-public class ConexaoDao {
+public class Conexao {
     
     public Statement stm;
     public ResultSet rs;
