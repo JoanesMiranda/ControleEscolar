@@ -16,7 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class CTurma extends Conexao{
     
-    public void salvar(Turma turma){
+    public void salvarTurma(Turma turma){
+        
         abrirBanco();
             try {
                 PreparedStatement stm = conn.prepareStatement("INSERT INTO turma(nome)"
@@ -29,4 +30,45 @@ public class CTurma extends Conexao{
             }
         fecharBanco();
     }
+    
+    public void pesquisarTurma(int cod){
+        
+        abrirBanco();
+            try {
+                PreparedStatement stm = conn.prepareStatement("SELECT * FROM turma WHERE COD = ?");
+                stm.setInt(1,cod);
+                stm.execute();
+           } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null," não cadastrado na base de dados"+ex.getMessage());
+           }
+        fecharBanco();
+    }
+    
+    public void apagarTuma(int cod){
+        
+        abrirBanco();
+            try {
+                PreparedStatement stm = conn.prepareStatement("DELETE FROM turma WHERE cod = ?");
+                stm.setInt(1,cod);
+                stm.execute();
+                 //JOptionPane.showMessageDialog(null,"Dados apagados com sucesso");
+             } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"erro ao apagar dados da tabela turma"+ex.getMessage());
+             }
+        fecharBanco();
+    }
+  
+    public void pesuisarTurma(int cod,String nome){
+        abrirBanco();
+            try {
+                 PreparedStatement  stm = conn.prepareStatement("UPDATE turma SET nome = ? WHERE cod = ?");
+                 stm.setString(1,nome);
+                 stm.setInt(2,cod);
+                 stm.executeUpdate();
+                 //JOptionPane.showMessageDialog(null, "dados atulizados com sucesso");
+             } catch (SQLException ex) {
+                 JOptionPane.showMessageDialog(null, "Erro ao atulizar a tabela turma"+ex.getMessage());
+             }
+        fecharBanco();
+    }   
 }
