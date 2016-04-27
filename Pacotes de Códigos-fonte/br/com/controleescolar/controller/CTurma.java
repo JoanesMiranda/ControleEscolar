@@ -58,7 +58,7 @@ public class CTurma extends Conexao{
         fecharBanco();
     }
   
-    public void pesuisarTurma(int cod,String nome){
+    public void atualizarTurma(int cod,String nome){
         abrirBanco();
             try {
                  PreparedStatement  stm = conn.prepareStatement("UPDATE turma SET nome = ? WHERE cod = ?");

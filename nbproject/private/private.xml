@@ -3,12 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/view/TelaRegistroChamada.java</file>
             <file>file:/C:/Users/suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/view/TelaMenuPrincipal.java</file>
             <file>file:/C:/Users/suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/view/TelaLogin.java</file>
             <file>file:/C:/Users/suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/controller/CAluno.java</file>
             <file>file:/C:/Users/suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/controller/CTurma.java</file>
             <file>file:/C:/Users/suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/controller/CLogin.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/C:/Users/Júnior/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/model/Login.java</file>
+            <file>file:/C:/Users/Júnior/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/view/TelaLogin.java</file>
+=======
+            <file>file:/C:/Users/Joanes/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/controller/CTurma.java</file>
+>>>>>>> 0da54d43a2a35b35ad86dfd78e27e5e445c03d6c
+>>>>>>> 034d4e79e6684a052b27c1057e1ec2cfc741dd6a
         </group>
     </open-files>
 </project-private>
