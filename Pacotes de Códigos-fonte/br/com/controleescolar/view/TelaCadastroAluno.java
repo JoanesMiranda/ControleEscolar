@@ -39,6 +39,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
         Sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Aluno");
 
         Nome.setText("Nome");
 

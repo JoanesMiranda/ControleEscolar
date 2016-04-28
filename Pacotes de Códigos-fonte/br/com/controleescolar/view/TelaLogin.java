@@ -147,7 +147,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_JButtonEntrarActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        new TelaCadastroUsuario().setVisible(true);
+        new TelaCadastroProfessor().setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
