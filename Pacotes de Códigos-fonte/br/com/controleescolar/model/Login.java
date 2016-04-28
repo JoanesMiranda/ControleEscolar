@@ -14,6 +14,16 @@ public class Login {
     private int idlogin;
     private String usuario;
     private String senha;
+    private int idprofessor;
+
+    public Login() {
+    }
+    
+    public Login(String usuario, String senha, int idprofessor) {
+        this.usuario = usuario;
+        this.senha = senha;
+        this.idprofessor = idprofessor;
+    }
 
     /**
      * @return the idlogin
@@ -55,6 +65,20 @@ public class Login {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the idprofessor
+     */
+    public int getIdprofessor() {
+        return idprofessor;
+    }
+
+    /**
+     * @param idprofessor the idprofessor to set
+     */
+    public void setIdprofessor(int idprofessor) {
+        this.idprofessor = idprofessor;
     }
     
 }

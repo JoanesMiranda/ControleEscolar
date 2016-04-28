@@ -14,6 +14,14 @@ public class Professor {
     private int idprofessor;
     private String nome;
 
+    public Professor() {
+    }
+
+    public Professor(int idprofessor, String nome) {
+        this.nome = nome;
+    }
+    
+    
     /**
      * @return the idprofessor
      */
