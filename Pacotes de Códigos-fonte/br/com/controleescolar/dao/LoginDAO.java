@@ -6,7 +6,6 @@
 package br.com.controleescolar.dao;
 
 import br.com.controleescolar.controller.Conexao;
-import br.com.controleescolar.model.Login;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -16,17 +15,16 @@ import javax.swing.JOptionPane;
  */
 public class LoginDAO extends Conexao{
     
-    private boolean loginUsuario(Login login){
+    public boolean loginUsuario(String usuario,String senha){
         boolean confirma = false;
         abrirBanco();
             try{
-                execultaSQL("select usuario,senha from login");
-
+                execultaSQL("SELECT usuario,senha FROM login");
                 while(rs.next()){
                     String user = rs.getString("usuario");
                     String password = rs.getString("senha");
 
-                    if(login.getUsuario().equals(user) && login.getSenha().equals(password)){
+                    if(usuario.equals(user) && senha.equals(password)){
                         confirma = true;
                     }else{
                         confirma = false;
