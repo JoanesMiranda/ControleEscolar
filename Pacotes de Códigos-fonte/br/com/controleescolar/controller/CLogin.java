@@ -19,13 +19,14 @@ public class CLogin extends Conexao{
     public void salvar(Login login){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO login(FK_Professor,senha,usuario)VALUES(?,?,?)");
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO login(FK_Professor,"
+                        + "senha,usuario)VALUES(?,?,?)");
                 
                 stm.setInt(1,login.getIdprofessor());
                 stm.setString(2, login.getSenha());
                 stm.setString(3, login.getUsuario());
                 stm.execute();
-                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela login");
+                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela login");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"erro ao salvar em login"+ex.getMessage());
             }

@@ -44,6 +44,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro do Usuario");
+        setAlwaysOnTop(true);
 
         jLabel1.setText(" Nome Completo:");
 
@@ -112,16 +113,15 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(259, 270));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
@@ -129,22 +129,20 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        Professor prof = new Professor();
-        prof.setNome(jTextFieldNome.getText());
+        //passando o nome do usuario professor para a classe professor
+        Professor prof = new Professor(jTextFieldNome.getText());
         
         CProfessor cprof = new CProfessor();
-        cprof.salvar(prof);
-        ////////////////////////////////////////////////
-        
-        LoginDAO lgDAO = new LoginDAO();
+            //salvando no banco de dados as informações do professor
+            cprof.salvar(prof);
+        ////////////////////////////////////////////////////////////////////////
         CLogin cLogin = new CLogin();
         
-        String usuario = jTextFieldUsuario.getText();
-        String senha = jPasswordFieldSenha.getText();
-        
-        Login login = new Login(usuario, senha, lgDAO.insertIdProfessor());
-        cLogin.salvar(login);
- 
+            Login login = new Login(jTextFieldUsuario.getText(), 
+                    jPasswordFieldSenha.getText(), cprof.insertIdProfessor());
+            //salvando no banco de dados as informações do professor
+            cLogin.salvar(login);
+            
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**

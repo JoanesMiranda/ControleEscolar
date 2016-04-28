@@ -17,10 +17,9 @@ public class Professor {
     public Professor() {
     }
 
-    public Professor(int idprofessor, String nome) {
+    public Professor(String nome) {
         this.nome = nome;
     }
-    
     
     /**
      * @return the idprofessor

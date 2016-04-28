@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Joanes
  */
 public class LoginDAO extends Conexao{
-    int idprofessor;
+   
     public boolean loginUsuario(String usuario,String senha){
         boolean confirma = false;
         abrirBanco();
@@ -35,20 +35,5 @@ public class LoginDAO extends Conexao{
             }    
         fecharBanco();
         return confirma;
-    }   
-    
-    //este codigo vai ser remanejado para outra classe "DAO".
-    public int insertIdProfessor(){
-        abrirBanco();
-            try{
-                execultaSQL("SELECT idprofessor FROM professor");
-                while(rs.next()){
-                    idprofessor = rs.getInt("idprofessor");
-                }
-            }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
-            }    
-        fecharBanco();
-        return idprofessor;
-    }   
+    } 
 }
