@@ -41,7 +41,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tela de Login");
-        setAlwaysOnTop(true);
         setResizable(false);
 
         jLabel1.setText("Usuario");

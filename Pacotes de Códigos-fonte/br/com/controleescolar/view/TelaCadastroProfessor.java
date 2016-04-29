@@ -7,9 +7,9 @@ package br.com.controleescolar.view;
 
 import br.com.controleescolar.controller.CLogin;
 import br.com.controleescolar.controller.CProfessor;
-import br.com.controleescolar.dao.LoginDAO;
 import br.com.controleescolar.model.Login;
 import br.com.controleescolar.model.Professor;
+
 
 /**
  *
@@ -51,7 +51,6 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro do Professor");
-        setAlwaysOnTop(true);
 
         Nome.setText("Nome");
 
@@ -175,21 +174,23 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
         //passando o nome do usuario professor para a classe professor
         Professor prof = new Professor(jTextNome.getText());
-
-        CProfessor cprof = new CProfessor();
+        
         //salvando no banco de dados as informações do professor
+        CProfessor cprof = new CProfessor();
         cprof.salvar(prof);
         ////////////////////////////////////////////////////////////////////////
-        CLogin cLogin = new CLogin();
-
+        
+        //passando o usuario,senha,idprofessor para a classe login
         Login login = new Login(jTextFieldUsuario.getText(),
-            jPasswordFieldSenha.getText(), cprof.insertIdProfessor());
+                jPasswordFieldSenha.getText(), cprof.insertIdProfessor());
+        
         //salvando no banco de dados as informações do professor
+        CLogin cLogin = new CLogin();
         cLogin.salvar(login);
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_SairActionPerformed
 
     /**

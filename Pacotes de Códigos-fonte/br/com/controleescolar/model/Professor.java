@@ -14,9 +14,6 @@ public class Professor {
     private int idprofessor;
     private String nome;
 
-    public Professor() {
-    }
-
     public Professor(String nome) {
         this.nome = nome;
     }
