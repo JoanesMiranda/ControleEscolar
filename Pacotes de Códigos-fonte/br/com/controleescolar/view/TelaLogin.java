@@ -5,7 +5,9 @@
  */
 package br.com.controleescolar.view;
 
+import br.com.controleescolar.controller.CLogin;
 import br.com.controleescolar.dao.LoginDAO;
+import br.com.controleescolar.model.Login;
 import javax.swing.JOptionPane;
 
 
@@ -62,6 +64,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel3.setForeground(new java.awt.Color(255, 0, 51));
         jLabel3.setText("Cadastre-se");
+        jLabel3.setToolTipText("Cadastre ou altere seus dados");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -127,7 +130,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
     private void JButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonEntrarActionPerformed
-       LoginDAO login = new LoginDAO();
+       CLogin login = new CLogin();
        
        boolean valor;
           

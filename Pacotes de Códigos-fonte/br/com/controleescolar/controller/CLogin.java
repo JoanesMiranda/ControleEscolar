@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class CLogin extends Conexao{
     
+    //Salva as informações no Banco de dados - tabela(login)
     public void salvar(Login login){
         abrirBanco();
             try {
@@ -32,4 +33,71 @@ public class CLogin extends Conexao{
             }
         fecharBanco();
     }
+    //Autentica login do usuario(professor), cadastrado no sistema
+    public boolean loginUsuario(String usuario,String senha){
+        boolean confirma = false;
+        abrirBanco();
+            try{
+                execultaSQL("SELECT usuario,senha FROM login");
+                while(rs.next()){
+                    String user = rs.getString("usuario");
+                    String password = rs.getString("senha");
+
+                    if(usuario.equals(user) && senha.equals(password)){
+                        confirma = true;
+                    }else{
+                        confirma = false;
+                    }
+                }
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+            }    
+        fecharBanco();
+        return confirma;
+    } 
+    //Pesquisa o usuario da tabela login e retorma para a interface do usuario
+    String usuario;
+    public String pesquisarLoginUsuario(int idprofessor){
+        abrirBanco();
+            try{
+                execultaSQL("SELECT usuario FROM login WHERE FK_professor = '"+idprofessor+"'");
+                    rs.next();
+                    usuario = rs.getString("usuario");
+                    //JOptionPane.showMessageDialog(null,"Pesquisa concluida");
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+            }    
+        fecharBanco();
+        return usuario;
+    }  
+    //Pesquisa o usuario da tabela login e retorma para a interface do usuario
+    String senha;
+    public String pesquisarLoginSenha(int idprofessor){
+        abrirBanco();
+            try{
+                execultaSQL("SELECT senha FROM login WHERE FK_professor = '"+idprofessor+"'");
+                    rs.next();
+                    senha = rs.getString("senha");
+                    //JOptionPane.showMessageDialog(null,"Pesquisa concluida");
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+            }    
+        fecharBanco();
+        return senha;
+    }
+    public void atualizaLogin(String usuario,String senha,int idprofessor){
+        abrirBanco();
+            try {
+                PreparedStatement stm = conn.prepareStatement("UPDATE login SET usuario = ?,senha = ?"
+                        + "WHERE FK_Professor = ?" );
+                stm.setString(1,usuario);
+                stm.setString(2,senha);
+                stm.setInt(3,idprofessor);
+                stm.execute();
+                JOptionPane.showMessageDialog(null,"dados atualizados com sucesso na tabela professor");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"erro ao atualizar em login"+ex.getMessage());
+            }
+        fecharBanco();
+    }  
 }
