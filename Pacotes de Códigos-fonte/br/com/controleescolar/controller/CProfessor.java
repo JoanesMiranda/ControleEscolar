@@ -16,11 +16,14 @@ import javax.swing.JOptionPane;
  */
 public class CProfessor extends Conexao{
     int idprofessor;
+    String nome;
+    
     public void salvar(Professor professor){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO professor(nome) VALUES(?)");
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO professor(nome,matricula) VALUES(?,?)");
                 stm.setString(1, professor.getNome());
+                stm.setString(2, professor.getMatricula());
                 stm.execute();
                 JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela professor");
             } catch (SQLException ex) {
@@ -41,4 +44,34 @@ public class CProfessor extends Conexao{
         fecharBanco();
         return idprofessor;
     }    
+    
+    public void exluirProfessor(Professor professor){
+        abrirBanco();
+            try {
+                PreparedStatement stm = conn.prepareStatement("DELETE login,professor FROM login INNER JOIN"
+                        + " professor ON login.FK_Professor = professor.idProfessor"
+                        + " WHERE professor.matricula = ?");
+                stm.setString(1, professor.getMatricula());
+                stm.execute();
+                JOptionPane.showMessageDialog(null,"Excluido com sucesso na tabela professor");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"erro ao Exluir em professor"+ex.getMessage());
+            }
+        fecharBanco();
+    }
+    
+    public String pesquisarProfessor(String matricula){
+       
+        abrirBanco();
+            try{
+                execultaSQL("SELECT nome FROM professor WHERE matricula = '"+matricula+"'");
+                    rs.next();
+                    nome = rs.getString("nome");
+                    //nome = rs.getString("matricula"); 
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+            }    
+        fecharBanco();
+        return nome;
+    }  
 }

@@ -13,9 +13,14 @@ public class Professor {
     
     private int idprofessor;
     private String nome;
+    private String matricula;
 
-    public Professor(String nome) {
+    public Professor() {
+    }
+
+    public Professor(String nome,String matricula) {
         this.nome = nome;
+        this.matricula = matricula;
     }
     
     /**
@@ -44,6 +49,20 @@ public class Professor {
      */
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    /**
+     * @return the matricula
+     */
+    public String getMatricula() {
+        return matricula;
+    }
+
+    /**
+     * @param matricula the matricula to set
+     */
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
     
 }
