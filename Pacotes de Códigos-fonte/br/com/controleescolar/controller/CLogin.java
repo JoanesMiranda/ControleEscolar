@@ -38,17 +38,17 @@ public class CLogin extends Conexao{
         boolean confirma = false;
         abrirBanco();
             try{
-                execultaSQL("SELECT usuario,senha FROM login");
-                while(rs.next()){
+                 execultaSQL("SELECT usuario,senha FROM login");
+                 rs.first();//pega os primeiros elementos da tabela
+                do{
                     String user = rs.getString("usuario");
                     String password = rs.getString("senha");
 
                     if(usuario.equals(user) && senha.equals(password)){
                         confirma = true;
-                    }else{
-                        confirma = false;
                     }
-                }
+               }while(rs.next()); // pega os demais eleemntos da tabela
+                
             }catch(SQLException ex){
                 JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
             }    
@@ -85,6 +85,7 @@ public class CLogin extends Conexao{
         fecharBanco();
         return senha;
     }
+    // altera o nome do usuario e senha do sistema
     public void atualizaLogin(String usuario,String senha,int idprofessor){
         abrirBanco();
             try {

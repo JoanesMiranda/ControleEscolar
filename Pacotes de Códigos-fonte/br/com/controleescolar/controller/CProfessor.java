@@ -20,18 +20,21 @@ public class CProfessor extends Conexao{
     String nome;
     
     public void salvar(Professor professor){
-        abrirBanco();
-            try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO professor(nome,matricula) VALUES(?,?)");
-                stm.setString(1, professor.getNome());
-                stm.setString(2, professor.getMatricula());
-                stm.execute();
-                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela professor");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"erro ao salvar em professor"+ex.getMessage());
-            }
-        fecharBanco();
+           
+                abrirBanco(); 
+                   try {
+                        PreparedStatement stm = conn.prepareStatement("INSERT INTO professor(nome,matricula) VALUES(?,?)");
+                        stm.setString(1, professor.getNome());
+                        stm.setString(2, professor.getMatricula());
+                        stm.execute();
+                        JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela professor");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null,"erro ao salvar em professor"+ex.getMessage());
+                    }
+                fecharBanco();   
+                      
     }
+    
     public int insertIdProfessor(String matricula){
         abrirBanco();
             try{
@@ -47,13 +50,14 @@ public class CProfessor extends Conexao{
         return idprofessor;
     }    
     
-    public void exluirProfessor(String matricula){
+    public void exluirProfessor(String matricula,String senha){
         abrirBanco();
             try {
                 PreparedStatement stm = conn.prepareStatement("DELETE login,professor FROM login INNER JOIN"
                         + " professor ON login.FK_Professor = professor.idprofessor"
-                        + " WHERE login.usuario = ?");
+                        + " WHERE login.usuario = ? AND login.senha = ?");
                 stm.setString(1,matricula);
+                stm.setString(2,senha);
                 stm.execute();
                 JOptionPane.showMessageDialog(null,"Excluido com sucesso na tabela professor");
             } catch (SQLException ex) {
@@ -87,6 +91,22 @@ public class CProfessor extends Conexao{
                 JOptionPane.showMessageDialog(null,"erro ao atualizar em professor"+ex.getMessage());
             }
         fecharBanco();
-        
     }   
+    
+    boolean valor = false;
+    public boolean pesquisaMatriculaCadastrada(String matricula){
+        abrirBanco();
+            try{
+                execultaSQL("SELECT matricula FROM professor");
+                while(rs.next()){
+                    if(matricula.equals(rs.getString("matricula"))){
+                    valor = true;
+                }
+             } 
+            }catch(SQLException ex){
+               JOptionPane.showMessageDialog(null,"erro ao retornar comparação de matricula"+ ex);
+            }
+        fecharBanco();
+        return valor;
+    }
 }

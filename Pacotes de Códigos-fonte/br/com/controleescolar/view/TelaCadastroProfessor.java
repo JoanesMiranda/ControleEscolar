@@ -9,6 +9,7 @@ import br.com.controleescolar.controller.CLogin;
 import br.com.controleescolar.controller.CProfessor;
 import br.com.controleescolar.model.Login;
 import br.com.controleescolar.model.Professor;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -59,6 +60,7 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro do Professor");
+        setResizable(false);
 
         Nome.setText("Nome");
 
@@ -142,23 +144,20 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                            .addComponent(jPasswordFieldSenha)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(12, 12, 12))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                    .addComponent(jPasswordFieldSenha)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -250,21 +249,23 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         
         //salvando no banco de dados as informações do professor
         CProfessor cprof = new CProfessor();
-        cprof.salvar(prof);
-        ////////////////////////////////////////////////////////////////////////
         
-        //passando o usuario,senha,idprofessor para a classe login
-        int id = cprof.insertIdProfessor(jFormattedTextFieldMatricula.getText());
-        Login login = new Login(jTextFieldUsuario.getText(),
-                jPasswordFieldSenha.getText(), id);
-        
-        //salvando no banco de dados as informações do professor
-        CLogin cLogin = new CLogin();
-        cLogin.salvar(login);
-        
+        if(cprof.pesquisaMatriculaCadastrada(jFormattedTextFieldMatricula.getText()) == true){
+            JOptionPane.showMessageDialog(rootPane,"A matricula informada já está cadastrada no sistema");
+        }else{
+            cprof.salvar(prof);
+            ////////////////////////////////////////////////////////////////////////
+            //passando o usuario,senha,idprofessor para a classe login
+            int id = cprof.insertIdProfessor(jFormattedTextFieldMatricula.getText());
+            Login login = new Login(jTextFieldUsuario.getText(),
+                    jPasswordFieldSenha.getText(), id);
+
+            //salvando no banco de dados as informações do professor
+            CLogin cLogin = new CLogin();
+            cLogin.salvar(login);
+        }
         //limpa campos
-        limparCampos();
-        
+        limparCampos();    
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
@@ -275,7 +276,7 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         Professor prof = new Professor();
       
         CProfessor cprof = new CProfessor();
-        cprof.exluirProfessor(jTextFieldUsuario.getText());
+        cprof.exluirProfessor(jTextFieldUsuario.getText(),jPasswordFieldSenha.getText());
         limparCampos();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
