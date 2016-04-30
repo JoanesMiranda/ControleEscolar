@@ -78,7 +78,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/login_cadeado (2).png"))); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Bookman Old Style", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 255));
         jLabel6.setText("LOGIN");
 

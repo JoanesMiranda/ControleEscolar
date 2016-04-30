@@ -16,6 +16,13 @@ public class Aluno {
     private String matricula;
     private String codcartaoarduino;
 
+    public Aluno(String nome, String matricula, String codcartaoarduino) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.codcartaoarduino = codcartaoarduino;
+    }
+
+    
     /**
      * @return the idaluno
      */
