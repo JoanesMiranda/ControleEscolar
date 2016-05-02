@@ -5,6 +5,8 @@
  */
 package br.com.controleescolar.controller;
 
+import br.com.controleescolar.model.Aluno;
+import br.com.controleescolar.model.Login;
 import br.com.controleescolar.model.Professor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,7 +68,7 @@ public class CProfessor extends Conexao{
         fecharBanco();
     }
     
-    public String pesquisarProfessor(String matricula){
+    public String pesquisarProfessorMatricula(String matricula){
         abrirBanco();
             try{
                 execultaSQL("SELECT nome FROM professor WHERE matricula = '"+matricula+"'");
@@ -78,6 +80,33 @@ public class CProfessor extends Conexao{
         fecharBanco();
         return nome;
     }  
+    
+    //falta terminar...
+    String nomeProfessor;
+    public String pesquisarProfessorLogin(Login login){
+        abrirBanco();
+            try{
+                PreparedStatement stm = conn.prepareStatement("SELECT nome FROM login INNER JOIN"
+                        + " professor ON login.FK_Professor = professor.idProfessor WHERE"
+                        + " login.usuario = ? AND login.senha = ?");
+                stm.setString(1,login.getUsuario() );
+                stm.setString(2,login.getSenha());
+                ResultSet rs = stm.executeQuery();
+                rs.first();
+                nomeProfessor = rs.getString("nome");
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+            }    
+        fecharBanco();
+        System.out.println("professor = "+nomeProfessor);
+        return nomeProfessor;   
+    }
+    
+    /**"SELECT * FROM login INNER JOIN"
+                        + " professor ON login.FK_Professor = professor.idProfessor WHERE"
+                        + " login.usuario ='"+ usuario+"' AND login.senha ='"+ senha+"'"
+    **/
+    
     public void atualizaProfessor(String nome,String matricula){
         abrirBanco();
             try {

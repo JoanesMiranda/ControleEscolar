@@ -5,8 +5,9 @@
  */
 package br.com.controleescolar.view;
 
-import java.util.Date;
-import javax.swing.JOptionPane;
+import br.com.controleescolar.controller.CProfessor;
+import br.com.controleescolar.model.Login;
+
 
 /**
  *
@@ -19,7 +20,16 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
      */
     public TelaRegistroChamada() {
         initComponents();
+        //Falta terminar
+        Login login = new Login();
+        CProfessor cprofessor = new CProfessor();
+        login.getUsuario();
+        login.getSenha();
+        cprofessor.pesquisarProfessorLogin(login);
+        
     }
+    
+       
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,13 +62,18 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         jCheckBox5 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Frequência Escolar");
         setResizable(false);
 
         jLabel1.setText("Nome do Professor:");
 
         jTextFieldNomeProfessor.setEditable(false);
+        jTextFieldNomeProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeProfessorActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Resgistro do dia: ");
 
@@ -246,6 +261,15 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         //}
 
     }//GEN-LAST:event_jComboBoxSelecionarTurmaActionPerformed
+
+    private void jTextFieldNomeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeProfessorActionPerformed
+       /**
+        //faz a pesquisa do nome do professor de acordo com o login do usuario atual
+        CProfessor cprof = new CProfessor();
+        Professor professor = new Professor();
+        jTextFieldNomeProfessor.setText(cprof.pesquisarProfessorLogin(professor.getMatricula()));
+       **/ 
+    }//GEN-LAST:event_jTextFieldNomeProfessorActionPerformed
 
     /**
      * @param args the command line arguments

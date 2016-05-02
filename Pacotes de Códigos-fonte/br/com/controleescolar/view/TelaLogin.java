@@ -6,8 +6,9 @@
 package br.com.controleescolar.view;
 
 import br.com.controleescolar.controller.CLogin;
-import br.com.controleescolar.dao.LoginDAO;
+import br.com.controleescolar.controller.CProfessor;
 import br.com.controleescolar.model.Login;
+import br.com.controleescolar.model.Professor;
 import javax.swing.JOptionPane;
 
 
@@ -159,22 +160,26 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
     private void JButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonEntrarActionPerformed
-       CLogin login = new CLogin();
+       CLogin clogin = new CLogin();
        
        boolean valor;
           
-       valor = login.loginUsuario(jTextFieldUsuario.getText(), jPasswordFieldSenha.getText());
+       valor = clogin.loginUsuario(jTextFieldUsuario.getText(), jPasswordFieldSenha.getText());
        
        if(valor == true){
+           Login login= new Login();
+           login.setUsuario(jTextFieldUsuario.getText());
+           login.setSenha(jPasswordFieldSenha.getText());
            new TelaMenuPrincipal().setVisible(valor);
            dispose();
        }else{
            JOptionPane.showMessageDialog(rootPane, "...Usuario ou Senha Incorreta...");
-           
            //limpa so campos da tela
            jTextFieldUsuario.setText("");
            jPasswordFieldSenha.setText("");
        }
+       ///////////////////////////////////////////////////////////////////
+       
     }//GEN-LAST:event_JButtonEntrarActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

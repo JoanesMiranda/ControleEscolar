@@ -22,7 +22,7 @@ public class CAluno extends Conexao{
                 PreparedStatement stm = conn.prepareStatement("INSERT INTO aluno(nome,matricula,codcartaoarduino)VALUES(?,?,?)");
                 stm.setString(1, aluno.getNome());
                 stm.setString(2, aluno.getMatricula());
-                stm.setString(2, aluno.getCodcartaoarduino());
+                stm.setString(3, aluno.getCodcartaoarduino());
                 stm.execute();
                 JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela aluno");
             } catch (SQLException ex) {
@@ -77,9 +77,9 @@ public class CAluno extends Conexao{
     public String pesquisaNomeCodarduino(String matricula){
         abrirBanco();
         try {
-            execultaSQL("SELECT codartaoarduino FROM aluno");
+            execultaSQL("SELECT * FROM aluno");
             rs.first();
-            nome = rs.getString("nome");
+            codArduino = rs.getString("codcartaoarduino");
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null,"Pesquisa do codarduino realizada com sucesso"+ex.getMessage());
         }

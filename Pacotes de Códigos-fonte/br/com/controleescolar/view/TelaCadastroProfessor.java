@@ -283,7 +283,7 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         CProfessor cprof = new CProfessor();
         //pesquisa o nome do professor baseado em sua matricula
-        jTextNome.setText(cprof.pesquisarProfessor(jFormattedTextFieldMatricula.getText()));
+        jTextNome.setText(cprof.pesquisarProfessorMatricula(jFormattedTextFieldMatricula.getText()));
         CLogin clogin = new CLogin();
         //pesquisa nome,senha pela FK do professor
         Login login = new Login();
