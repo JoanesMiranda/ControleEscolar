@@ -177,7 +177,7 @@ public class TelaLogin extends javax.swing.JFrame {
        }
        
        if(valor == true){
-       Sessao sessao = new Sessao();
+           Sessao sessao = new Sessao();
            sessao.setUsuario(jTextFieldUsuario.getText());
            sessao.setSenha(jPasswordFieldSenha.getText());
        }
