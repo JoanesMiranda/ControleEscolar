@@ -7,6 +7,7 @@ package br.com.controleescolar.view;
 
 import br.com.controleescolar.controller.CProfessor;
 import br.com.controleescolar.model.Login;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -19,16 +20,15 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
      * Creates new form TelaRegistroChamada
      */
     public TelaRegistroChamada() {
-        initComponents();
-        //Falta terminar
-        Login login = new Login();
+        
+        initComponents(); 
+    }
+    public void exportaLogin(Login login){
         CProfessor cprofessor = new CProfessor();
         login.getUsuario();
         login.getSenha();
-        cprofessor.pesquisarProfessorLogin(login);
-        
-    }
-    
+        jTextFieldNomeProfessor.setText(cprofessor.pesquisarProfessorLogin(login));
+         }
        
 
     /**
@@ -79,7 +79,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Bookman Old Style", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 255));
-        jLabel5.setText("Resgitro de Frequência Escolar");
+        jLabel5.setText("Registro de Frequência Escolar");
 
         jTableNomesDosAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

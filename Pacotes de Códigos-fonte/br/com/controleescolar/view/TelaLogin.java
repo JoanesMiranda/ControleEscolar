@@ -167,9 +167,6 @@ public class TelaLogin extends javax.swing.JFrame {
        valor = clogin.loginUsuario(jTextFieldUsuario.getText(), jPasswordFieldSenha.getText());
        
        if(valor == true){
-           Login login= new Login();
-           login.setUsuario(jTextFieldUsuario.getText());
-           login.setSenha(jPasswordFieldSenha.getText());
            new TelaMenuPrincipal().setVisible(valor);
            dispose();
        }else{
@@ -177,6 +174,14 @@ public class TelaLogin extends javax.swing.JFrame {
            //limpa so campos da tela
            jTextFieldUsuario.setText("");
            jPasswordFieldSenha.setText("");
+       }
+       if(valor == true){
+       Login login = new Login();
+           login.setUsuario(jTextFieldUsuario.getText());
+           login.setSenha(jPasswordFieldSenha.getText());
+           TelaRegistroChamada telachamada = new TelaRegistroChamada();
+           telachamada.exportaLogin(login);
+           telachamada.setVisible(true);
        }
        ///////////////////////////////////////////////////////////////////
        
