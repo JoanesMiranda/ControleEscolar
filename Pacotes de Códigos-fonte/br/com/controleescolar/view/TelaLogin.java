@@ -175,13 +175,11 @@ public class TelaLogin extends javax.swing.JFrame {
            jTextFieldUsuario.setText("");
            jPasswordFieldSenha.setText("");
        }
+       
        if(valor == true){
-       Login login = new Login();
-           login.setUsuario(jTextFieldUsuario.getText());
-           login.setSenha(jPasswordFieldSenha.getText());
-           TelaRegistroChamada telachamada = new TelaRegistroChamada();
-           telachamada.exportaLogin(login);
-           telachamada.setVisible(true);
+       Sessao sessao = new Sessao();
+           sessao.setUsuario(jTextFieldUsuario.getText());
+           sessao.setSenha(jPasswordFieldSenha.getText());
        }
        ///////////////////////////////////////////////////////////////////
        
