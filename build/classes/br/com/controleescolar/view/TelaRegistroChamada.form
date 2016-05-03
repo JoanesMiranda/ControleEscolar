@@ -88,10 +88,7 @@
                                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jDateChooserCalendario" min="-2" pref="130" max="-2" attributes="0"/>
-                                              <Component id="jComboBoxSelecionarTurma" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jComboBoxSelecionarTurma" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -123,10 +120,7 @@
                               <Component id="jTextFieldNomeProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel2" linkSize="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jDateChooserCalendario" linkSize="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -160,7 +154,7 @@
                                   <Component id="jCheckBox5" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="201" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="207" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -187,8 +181,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Resgistro do dia: "/>
           </Properties>
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserCalendario">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
