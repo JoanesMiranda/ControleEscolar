@@ -49,7 +49,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBoxDsiciplina = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Aluno");
 
         Nome.setText("Nome");

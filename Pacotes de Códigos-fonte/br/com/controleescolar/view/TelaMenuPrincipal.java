@@ -5,6 +5,8 @@
  */
 package br.com.controleescolar.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Joanes
@@ -31,7 +33,15 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItemDisciplina = new javax.swing.JMenuItem();
+        jMenuItemAluno = new javax.swing.JMenuItem();
+        jMenuItemTurma = new javax.swing.JMenuItem();
+        jMenuItemProfessor = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItemRelatorioChamadas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,7 +76,64 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu5.setText("Cadastrar");
+
+        jMenuItemDisciplina.setText("Disciplina");
+        jMenuItemDisciplina.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItemDisciplinaMouseClicked(evt);
+            }
+        });
+        jMenuItemDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDisciplinaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItemDisciplina);
+
+        jMenuItemAluno.setText("Aluno");
+        jMenuItemAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAlunoActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItemAluno);
+
+        jMenuItemTurma.setText("Turma");
+        jMenuItemTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTurmaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItemTurma);
+
+        jMenuItemProfessor.setText("Professor");
+        jMenuItemProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemProfessorActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItemProfessor);
+
+        jMenuBar1.add(jMenu5);
+
+        jMenu4.setText("Relatorios");
+
+        jMenuItemRelatorioChamadas.setText("Relatorio de Chamada");
+        jMenu4.add(jMenuItemRelatorioChamadas);
+
+        jMenuBar1.add(jMenu4);
+
         jMenu2.setText("Sobre");
+
+        jMenuItem2.setText("Desenvolvedores");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Sair");
@@ -105,6 +172,30 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
          new TelaRegistroChamada().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItemAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlunoActionPerformed
+        new TelaCadastroAluno().setVisible(true);
+    }//GEN-LAST:event_jMenuItemAlunoActionPerformed
+
+    private void jMenuItemDisciplinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemDisciplinaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemDisciplinaMouseClicked
+
+    private void jMenuItemDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDisciplinaActionPerformed
+       new  TelaCadastroDisciplina().setVisible(true);
+    }//GEN-LAST:event_jMenuItemDisciplinaActionPerformed
+
+    private void jMenuItemTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTurmaActionPerformed
+        new TelaCadastroTurma().setVisible(true);
+    }//GEN-LAST:event_jMenuItemTurmaActionPerformed
+
+    private void jMenuItemProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProfessorActionPerformed
+        new TelaCadastroProfessor().setVisible(true);
+    }//GEN-LAST:event_jMenuItemProfessorActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "AJs-Develops: Joanes M. Souto, Mario Paulino");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,8 +236,16 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemAluno;
+    private javax.swing.JMenuItem jMenuItemDisciplina;
+    private javax.swing.JMenuItem jMenuItemProfessor;
+    private javax.swing.JMenuItem jMenuItemRelatorioChamadas;
+    private javax.swing.JMenuItem jMenuItemTurma;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

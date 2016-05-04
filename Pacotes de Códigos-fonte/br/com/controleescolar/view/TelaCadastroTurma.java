@@ -39,7 +39,7 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
         Sair = new javax.swing.JButton();
         jButtonPesquisar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Turma");
 
         jLabel5.setFont(new java.awt.Font("Bookman Old Style", 0, 24)); // NOI18N
