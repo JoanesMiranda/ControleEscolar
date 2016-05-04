@@ -5,8 +5,8 @@
  */
 package br.com.controleescolar.view;
 
-import br.com.controleescolar.controller.CLogin;
-import br.com.controleescolar.controller.CProfessor;
+import br.com.controleescolar.controller.LoginController;
+import br.com.controleescolar.controller.ProfessorController;
 import br.com.controleescolar.model.Login;
 import br.com.controleescolar.model.Professor;
 import javax.swing.JOptionPane;
@@ -266,7 +266,7 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         Professor prof = new Professor(jTextNome.getText(),jFormattedTextFieldMatricula.getText());
         
         //salvando no banco de dados as informações do professor
-        CProfessor cprof = new CProfessor();
+        ProfessorController cprof = new ProfessorController();
         
         if(cprof.pesquisaMatriculaCadastrada(jFormattedTextFieldMatricula.getText()) == true){
             JOptionPane.showMessageDialog(rootPane,"A matricula informada já está cadastrada no sistema");
@@ -279,7 +279,7 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
                     jPasswordFieldSenha.getText(), id);
 
             //salvando no banco de dados as informações do professor
-            CLogin cLogin = new CLogin();
+            LoginController cLogin = new LoginController();
             cLogin.salvar(login);
         }
         //limpa campos
@@ -293,16 +293,16 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         Professor prof = new Professor();
       
-        CProfessor cprof = new CProfessor();
+        ProfessorController cprof = new ProfessorController();
         cprof.exluirProfessor(jTextFieldUsuario.getText(),jPasswordFieldSenha.getText());
         limparCampos();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        CProfessor cprof = new CProfessor();
+        ProfessorController cprof = new ProfessorController();
         //pesquisa o nome do professor baseado em sua matricula
         jTextNome.setText(cprof.pesquisarProfessorMatricula(jFormattedTextFieldMatricula.getText()));
-        CLogin clogin = new CLogin();
+        LoginController clogin = new LoginController();
         //pesquisa nome,senha pela FK do professor
         Login login = new Login();
         jTextFieldUsuario.setText(clogin.pesquisarLoginUsuario(cprof.insertIdProfessor(jFormattedTextFieldMatricula.getText())));
@@ -312,9 +312,9 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
        //Atualiza as informações da tabela professor
-        CProfessor cprofessor = new CProfessor();
+        ProfessorController cprofessor = new ProfessorController();
        cprofessor.atualizaProfessor(jTextNome.getText(),jFormattedTextFieldMatricula.getText());
-       CLogin clogin = new CLogin();
+       LoginController clogin = new LoginController();
        clogin.atualizaLogin(jTextFieldUsuario.getText(), jPasswordFieldSenha.getText(),
                cprofessor.insertIdProfessor(jFormattedTextFieldMatricula.getText()));
        limparCampos();;

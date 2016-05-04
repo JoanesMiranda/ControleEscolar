@@ -5,7 +5,7 @@
  */
 package br.com.controleescolar.view;
 
-import br.com.controleescolar.controller.CAluno;
+import br.com.controleescolar.controller.AlunoControleler;
 import br.com.controleescolar.model.Aluno;
 import javax.swing.JOptionPane;
 
@@ -224,7 +224,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
         //salva as informações do aluno no BD
         Aluno aluno = new Aluno(jTextNome.getText(),jTextMatricula.getText(),Codcartaoarduino.getText());
-        CAluno caluno = new CAluno();
+        AlunoControleler caluno = new AlunoControleler();
         caluno.salvar(aluno);
     }//GEN-LAST:event_CadastrarActionPerformed
 
@@ -235,19 +235,19 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //apaga as informações do aluno da tabela aluno
-        CAluno caluno = new CAluno();
+        AlunoControleler caluno = new AlunoControleler();
         caluno.excluirAluno(jTextMatricula.getText());
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         //alualiza as informaçõees do aluno na tabela aluno
-        CAluno caluno = new CAluno();
+        AlunoControleler caluno = new AlunoControleler();
         caluno.atualizaAluno(jTextNome.getText(),Codcartaoarduino.getText(),jTextMatricula.getText());
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         //pesquisa as informações do aluno no BD e retorma para os campos da telaAluno
-        CAluno caluno = new CAluno();
+        AlunoControleler caluno = new AlunoControleler();
         jTextNome.setText(caluno.pesquisaNomeAluno(jTextMatricula.getText()));
         Codcartaoarduino.setText(caluno.pesquisaNomeCodarduino(jTextMatricula.getText()));
     }//GEN-LAST:event_jButtonPesquisarActionPerformed

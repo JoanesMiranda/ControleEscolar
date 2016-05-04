@@ -5,7 +5,7 @@
  */
 package br.com.controleescolar.view;
 
-import br.com.controleescolar.controller.CLogin;
+import br.com.controleescolar.controller.LoginController;
 import javax.swing.JOptionPane;
 
 /**
@@ -160,7 +160,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
     private void JButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonEntrarActionPerformed
-       CLogin clogin = new CLogin();
+       LoginController clogin = new LoginController();
        
        boolean valor;
           

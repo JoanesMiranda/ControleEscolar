@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Joanes
  */
-public class CProfessor extends Conexao{
+public class ProfessorController extends Conexao{
     
     public void salvar(Professor professor){
            

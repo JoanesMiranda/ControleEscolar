@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author Joanes
  */
-public class CTurma extends Conexao{
+public class TurmaController extends Conexao{
     
     public void salvarTurma(Turma turma){
         

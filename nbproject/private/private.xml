@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/controller/TurmaTemAlunoController.java</file>
+            <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/controller/AlunoControleler.java</file>
+            <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/controller/TurmaTemProfessorController.java</file>
+            <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/controller/AlunoTemDisciplinaController.java</file>
+        </group>
     </open-files>
 </project-private>

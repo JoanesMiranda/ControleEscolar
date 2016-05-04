@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author Joanes
  */
-public class CLogin extends Conexao{
+public class LoginController extends Conexao{
     
     //Salva as informações no Banco de dados - tabela(login)
     public void salvar(Login login){

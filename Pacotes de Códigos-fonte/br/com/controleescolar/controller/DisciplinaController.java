@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author Joanes
  */
-public class CDisciplina extends Conexao{
+public class DisciplinaController extends Conexao{
     
     public void salvar(Disciplina disciplina){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO disciplina(nome,FK_professor)"
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO disciplina(nome,codigo)"
                         + "VALUES(?,?)");
                 stm.setString(1, disciplina.getNome());
                 stm.setInt(2, disciplina.getIdprofessor());
