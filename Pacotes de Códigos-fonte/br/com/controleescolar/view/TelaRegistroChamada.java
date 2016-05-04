@@ -22,21 +22,14 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
     public TelaRegistroChamada() {
         
         initComponents();
+        
         if(!Sessao.getUsuario().isEmpty()){
-           jTextFieldNomeProfessor.setText(Sessao.getUsuario());
+           CProfessor cprofessor = new CProfessor();
+           String usuario = Sessao.getUsuario();
+           String senha = Sessao.getSenha();
+           jTextFieldNomeProfessor.setText(cprofessor.pesquisarProfessorLogin(usuario,senha));
         }
-        
-        
-        
     }
-    public void exportaLogin(Login login){
-        CProfessor cprofessor = new CProfessor();
-        login.getUsuario();
-        login.getSenha();
-        jTextFieldNomeProfessor.setText(cprofessor.pesquisarProfessorLogin(login));
-         }
-       
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +59,6 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Frequência Escolar");
@@ -190,9 +182,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                                             .addComponent(jLabel2)
                                             .addComponent(jLabel3))
                                         .addGap(21, 21, 21)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBoxSelecionarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jComboBoxSelecionarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -214,10 +204,8 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jTextFieldNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jComboBoxSelecionarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -243,7 +231,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                                 .addComponent(jCheckBox6)
                                 .addComponent(jCheckBox5)))
                         .addGap(0, 206, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -272,16 +260,11 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxSelecionarTurmaActionPerformed
 
     private void jTextFieldNomeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeProfessorActionPerformed
-       /**
-        //faz a pesquisa do nome do professor de acordo com o login do usuario atual
-        CProfessor cprof = new CProfessor();
-        Professor professor = new Professor();
-        jTextFieldNomeProfessor.setText(cprof.pesquisarProfessorLogin(professor.getMatricula()));
-       **/ 
+      
     }//GEN-LAST:event_jTextFieldNomeProfessorActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        Sessao.close();
+
     }//GEN-LAST:event_formWindowClosed
 
     /**
@@ -331,7 +314,6 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JComboBox<String> jComboBoxSelecionarTurma;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

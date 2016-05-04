@@ -7,6 +7,7 @@ package br.com.controleescolar.view;
 
 import br.com.controleescolar.controller.CAluno;
 import br.com.controleescolar.model.Aluno;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -128,7 +129,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 255, Short.MAX_VALUE))
+                        .addGap(0, 91, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Codcartaoarduino, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
@@ -175,7 +176,9 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +204,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //apaga as informações do aluno da tabela aluno
         CAluno caluno = new CAluno();
-        caluno.excluirAluno(jTextMatricula.getText());   
+        caluno.excluirAluno(jTextMatricula.getText());
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed

@@ -5,8 +5,6 @@
  */
 package br.com.controleescolar.controller;
 
-import br.com.controleescolar.model.Aluno;
-import br.com.controleescolar.model.Login;
 import br.com.controleescolar.model.Professor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +32,6 @@ public class CProfessor extends Conexao{
                         JOptionPane.showMessageDialog(null,"erro ao salvar em professor"+ex.getMessage());
                     }
                 fecharBanco();   
-                      
     }
     
     public int insertIdProfessor(String matricula){
@@ -81,16 +78,15 @@ public class CProfessor extends Conexao{
         return nome;
     }  
     
-    //falta terminar...
     String nomeProfessor;
-    public String pesquisarProfessorLogin(Login login){
+    public String pesquisarProfessorLogin(String usuario,String senha){
         abrirBanco();
             try{
                 PreparedStatement stm = conn.prepareStatement("SELECT nome FROM login INNER JOIN"
                         + " professor ON login.FK_Professor = professor.idProfessor WHERE"
                         + " login.usuario = ? AND login.senha = ?");
-                stm.setString(1,login.getUsuario() );
-                stm.setString(2,login.getSenha());
+                stm.setString(1,usuario);
+                stm.setString(2,senha);
                 ResultSet rs = stm.executeQuery();
                 rs.first();
                 nomeProfessor = rs.getString("nome");
@@ -101,11 +97,6 @@ public class CProfessor extends Conexao{
         System.out.println("professor = "+nomeProfessor);
         return nomeProfessor;   
     }
-    
-    /**"SELECT * FROM login INNER JOIN"
-                        + " professor ON login.FK_Professor = professor.idProfessor WHERE"
-                        + " login.usuario ='"+ usuario+"' AND login.senha ='"+ senha+"'"
-    **/
     
     public void atualizaProfessor(String nome,String matricula){
         abrirBanco();

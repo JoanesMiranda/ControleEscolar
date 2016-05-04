@@ -34,12 +34,12 @@ public class CAluno extends Conexao{
     public void excluirAluno(String matricula){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("DELETE aluno WHERE matricula = ?)");
+                PreparedStatement stm = conn.prepareStatement("DELETE FROM aluno WHERE matricula = ?");
                 stm.setString(1, matricula);
                 stm.execute();
                 JOptionPane.showMessageDialog(null,"Exluido com sucesso na tabela aluno");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"erro ao salvar em aluno"+ex.getMessage());
+                JOptionPane.showMessageDialog(null,"erro ao excuir o aluno"+ex.getMessage());
             }
         fecharBanco();   
     }    
@@ -47,7 +47,8 @@ public class CAluno extends Conexao{
     public void atualizaAluno(String nome,String codcartaoarduino,String matricula){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("UPDATE aluno SET nome = ?,codcadtaoarduno = ? WHERE matricula = ?)");
+                PreparedStatement stm = conn.prepareStatement("UPDATE aluno SET nome = ?,codcartaoarduino = ? WHERE"
+                        + " matricula = ?");
                 stm.setString(1, nome);
                 stm.setString(2, codcartaoarduino);
                 stm.setString(3, matricula);
@@ -59,25 +60,27 @@ public class CAluno extends Conexao{
         fecharBanco(); 
     }
     
-    String nome;
+    
     public String pesquisaNomeAluno(String matricula){
+        String nome = null;
         abrirBanco();
         try {
-            execultaSQL("SELECT nome FROM aluno");
+            execultaSQL("SELECT nome FROM aluno WHERE matricula = '"+ matricula+"'");
             rs.first();
             nome = rs.getString("nome");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Pesquisa do nome realizada com sucesso"+ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso"+ex.getMessage());
         }
         fecharBanco();
         return nome;
     }
     
-    String codArduino;
+   
     public String pesquisaNomeCodarduino(String matricula){
+        String codArduino = null;
         abrirBanco();
         try {
-            execultaSQL("SELECT * FROM aluno");
+            execultaSQL("SELECT codcartaoarduino FROM aluno WHERE matricula ='"+ matricula+"'");
             rs.first();
             codArduino = rs.getString("codcartaoarduino");
         } catch (SQLException ex) {
