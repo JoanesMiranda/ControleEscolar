@@ -6,11 +6,7 @@
 package br.com.controleescolar.view;
 
 import br.com.controleescolar.controller.CLogin;
-import br.com.controleescolar.controller.CProfessor;
-import br.com.controleescolar.model.Login;
-import br.com.controleescolar.model.Professor;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -23,6 +19,10 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+    }
+    public void limpaTela(){
+        jTextFieldUsuario.setText("");
+        jPasswordFieldSenha.setText("");
     }
 
     /**
@@ -172,16 +172,14 @@ public class TelaLogin extends javax.swing.JFrame {
        }else{
            JOptionPane.showMessageDialog(rootPane, "...Usuario ou Senha Incorreta...");
            //limpa so campos da tela
-           jTextFieldUsuario.setText("");
-           jPasswordFieldSenha.setText("");
+           limpaTela();
        }
-       
+       //pega os valores da sessão
        if(valor == true){
            Sessao sessao = new Sessao();
            sessao.setUsuario(jTextFieldUsuario.getText());
            sessao.setSenha(jPasswordFieldSenha.getText());
        }
-       ///////////////////////////////////////////////////////////////////
        
     }//GEN-LAST:event_JButtonEntrarActionPerformed
 

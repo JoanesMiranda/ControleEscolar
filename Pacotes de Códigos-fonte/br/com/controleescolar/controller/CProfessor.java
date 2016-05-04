@@ -16,8 +16,6 @@ import javax.swing.JOptionPane;
  * @author Joanes
  */
 public class CProfessor extends Conexao{
-    int idprofessor;
-    String nome;
     
     public void salvar(Professor professor){
            
@@ -35,6 +33,7 @@ public class CProfessor extends Conexao{
     }
     
     public int insertIdProfessor(String matricula){
+        int idprofessor = 0;
         abrirBanco();
             try{
                 PreparedStatement stm = conn.prepareStatement("SELECT idprofessor FROM professor WHERE matricula =?");
@@ -66,6 +65,7 @@ public class CProfessor extends Conexao{
     }
     
     public String pesquisarProfessorMatricula(String matricula){
+        String nome = null;
         abrirBanco();
             try{
                 execultaSQL("SELECT nome FROM professor WHERE matricula = '"+matricula+"'");
@@ -78,8 +78,9 @@ public class CProfessor extends Conexao{
         return nome;
     }  
     
-    String nomeProfessor;
+    
     public String pesquisarProfessorLogin(String usuario,String senha){
+        String nomeProfessor = null;
         abrirBanco();
             try{
                 PreparedStatement stm = conn.prepareStatement("SELECT nome FROM login INNER JOIN"
@@ -94,7 +95,6 @@ public class CProfessor extends Conexao{
                 JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
             }    
         fecharBanco();
-        System.out.println("professor = "+nomeProfessor);
         return nomeProfessor;   
     }
     
@@ -113,8 +113,8 @@ public class CProfessor extends Conexao{
         fecharBanco();
     }   
     
-    boolean valor = false;
     public boolean pesquisaMatriculaCadastrada(String matricula){
+        boolean valor = false;
         abrirBanco();
             try{
                 execultaSQL("SELECT matricula FROM professor");
