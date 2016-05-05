@@ -13,7 +13,16 @@ public class Turma {
     
     private int idturma;
     private String nome;
+    private String codigo;
 
+    public Turma() {
+    }
+
+    public Turma(String nome, String codigo) {
+        this.nome = nome;
+        this.codigo = codigo;
+    }
+    
     /**
      * @return the idturma
      */
@@ -40,6 +49,20 @@ public class Turma {
      */
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    /**
+     * @return the codigo
+     */
+    public String getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
     
 }

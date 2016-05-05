@@ -7,6 +7,7 @@ package br.com.controleescolar.view;
 
 import br.com.controleescolar.controller.LoginController;
 import br.com.controleescolar.controller.ProfessorController;
+import br.com.controleescolar.controller.TurmaController;
 import br.com.controleescolar.model.Login;
 import br.com.controleescolar.model.Professor;
 import javax.swing.JOptionPane;
@@ -23,6 +24,17 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
      */
     public TelaCadastroProfessor() {
         initComponents();
+        
+        TurmaController turmaC = new TurmaController();
+        jComboBoxTurmas.removeAllItems();
+        //jComboBoxTurmas.addItem(turmaC.pesquisaTodasTurmas());
+        for(int i=0; i < turmaC.pesquisaTodasTurmas().length ; i++){
+            jComboBoxTurmas.addItem(turmaC.pesquisaTodasTurmas()[i]);
+        }
+        
+        
+        
+        
     }
     public void limparCampos(){
         jTextNome.setText("");
@@ -56,6 +68,8 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         jButtonPesquisar = new javax.swing.JButton();
         jFormattedTextFieldMatricula = new javax.swing.JFormattedTextField();
         jButtonEditar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBoxTurmas = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro do Professor");
@@ -130,6 +144,8 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Turma");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -142,7 +158,8 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
                             .addComponent(Nome)
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -158,7 +175,9 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
                                 .addComponent(jPasswordFieldSenha))
                             .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jFormattedTextFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jComboBoxTurmas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jFormattedTextFieldMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -187,7 +206,11 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
                         .addComponent(jFormattedTextFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4))
                     .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,6 +237,8 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonPesquisar, jFormattedTextFieldMatricula});
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jPasswordFieldSenha, jTextFieldUsuario});
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBoxTurmas, jLabel6});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -333,12 +358,14 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JComboBox<String> jComboBoxTurmas;
     private javax.swing.JFormattedTextField jFormattedTextFieldMatricula;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldUsuario;

@@ -5,6 +5,9 @@
  */
 package br.com.controleescolar.view;
 
+import br.com.controleescolar.controller.TurmaController;
+import br.com.controleescolar.model.Turma;
+
 /**
  *
  * @author Joanes
@@ -30,9 +33,9 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         Nome = new javax.swing.JLabel();
-        Disciplina = new javax.swing.JTextField();
+        JTextFildNome = new javax.swing.JTextField();
         jlabel = new javax.swing.JLabel();
-        cod = new javax.swing.JTextField();
+        JTexFildCodigo = new javax.swing.JTextField();
         Cadastrar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
@@ -50,9 +53,9 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
 
         jlabel.setText("Código");
 
-        cod.addActionListener(new java.awt.event.ActionListener() {
+        JTexFildCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codActionPerformed(evt);
+                JTexFildCodigoActionPerformed(evt);
             }
         });
 
@@ -104,7 +107,7 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Nome)
                         .addGap(16, 16, 16)
-                        .addComponent(Disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JTextFildNome, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jlabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -118,7 +121,7 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cod)
+                                .addComponent(JTexFildCodigo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(59, Short.MAX_VALUE))
@@ -137,12 +140,12 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextFildNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Nome))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JTexFildCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jlabel))
                     .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
@@ -173,29 +176,36 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void codActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codActionPerformed
+    private void JTexFildCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTexFildCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_codActionPerformed
+    }//GEN-LAST:event_JTexFildCodigoActionPerformed
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-       
+        Turma turma = new Turma(JTextFildNome.getText(),JTexFildCodigo.getText());
+        TurmaController turmaController = new TurmaController();
+        turmaController.salvarTurma(turma);
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        //
+        TurmaController turmaController = new TurmaController();
+        turmaController.apagarTuma(JTexFildCodigo.getText());
         
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-      
+      TurmaController turmaController = new TurmaController();
+      turmaController.atualizarTurma(JTextFildNome.getText(),JTexFildCodigo.getText());
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        //fecha a telaAluno sem fechar o projeto
+        //fecha a telaCadastroTurma sem fechar o projeto
         dispose();
     }//GEN-LAST:event_SairActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-       
+        TurmaController turmaController = new TurmaController();
+        JTextFildNome.setText(turmaController.pesquisarTurma(JTexFildCodigo.getText()));
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     /**
@@ -235,10 +245,10 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cadastrar;
-    private javax.swing.JTextField Disciplina;
+    private javax.swing.JTextField JTexFildCodigo;
+    private javax.swing.JTextField JTextFildNome;
     private javax.swing.JLabel Nome;
     private javax.swing.JButton Sair;
-    private javax.swing.JTextField cod;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonPesquisar;

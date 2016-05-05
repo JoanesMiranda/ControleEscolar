@@ -7,6 +7,7 @@ package br.com.controleescolar.controller;
 
 import br.com.controleescolar.model.Turma;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -20,9 +21,10 @@ public class TurmaController extends Conexao{
         
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO turma(nome)"
-                        + "VALUES(?)");
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO turma(nome,codigo)"
+                        + "VALUES(?,?)");
                 stm.setString(1, turma.getNome());
+                stm.setString(2, turma.getCodigo());
                 stm.execute();
                 //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela turma");
             } catch (SQLException ex) {
@@ -31,25 +33,28 @@ public class TurmaController extends Conexao{
         fecharBanco();
     }
     
-    public void pesquisarTurma(int cod){
-        
+    public String pesquisarTurma(String codigo){
+        String nome = null;
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("SELECT * FROM turma WHERE COD = ?");
-                stm.setInt(1,cod);
-                stm.execute();
+                PreparedStatement stm = conn.prepareStatement("SELECT nome FROM turma WHERE codigo = ?");
+                stm.setString(1,codigo);
+                ResultSet rs = stm.executeQuery();
+                rs.first();
+                nome = rs.getString("nome");
            } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null," não cadastrado na base de dados"+ex.getMessage());
            }
         fecharBanco();
+        return nome;
     }
     
-    public void apagarTuma(int cod){
+    public void apagarTuma(String codigo){
         
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("DELETE FROM turma WHERE cod = ?");
-                stm.setInt(1,cod);
+                PreparedStatement stm = conn.prepareStatement("DELETE FROM turma WHERE codigo = ?");
+                stm.setString(1,codigo);
                 stm.execute();
                  //JOptionPane.showMessageDialog(null,"Dados apagados com sucesso");
              } catch (SQLException ex) {
@@ -58,17 +63,35 @@ public class TurmaController extends Conexao{
         fecharBanco();
     }
   
-    public void atualizarTurma(int cod,String nome){
+    public void atualizarTurma(String codigo,String nome){
         abrirBanco();
             try {
-                 PreparedStatement  stm = conn.prepareStatement("UPDATE turma SET nome = ? WHERE cod = ?");
+                 PreparedStatement  stm = conn.prepareStatement("UPDATE turma SET nome = ? WHERE codigo = ?");
                  stm.setString(1,nome);
-                 stm.setInt(2,cod);
+                 stm.setString(2,codigo);
                  stm.executeUpdate();
                  //JOptionPane.showMessageDialog(null, "dados atulizados com sucesso");
              } catch (SQLException ex) {
                  JOptionPane.showMessageDialog(null, "Erro ao atulizar a tabela turma"+ex.getMessage());
              }
         fecharBanco();
-    }   
+    }
+    public String[] pesquisaTodasTurmas(){
+        int tam = 0;
+        String nomes[] = new String[20];
+        abrirBanco();
+        try {
+            execultaSQL("SELECT nome FROM turma");
+            rs.first();
+            do{
+                nomes[tam] = rs.getString("nome");
+                tam++;
+            }while(rs.next());
+            //System.out.println(tam);
+                //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
+        } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Nenhum Medico Cadastrado!  "+ex.getMessage());
+        }    
+        return nomes;
+    }  
 }
