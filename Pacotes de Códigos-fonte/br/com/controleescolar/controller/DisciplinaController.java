@@ -19,10 +19,11 @@ public class DisciplinaController extends Conexao{
     public void salvar(Disciplina disciplina){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO disciplina(nome,codigo)"
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO disciplina(nome,codigo,FK_Professor)"
                         + "VALUES(?,?)");
                 stm.setString(1, disciplina.getNome());
-                stm.setInt(2, disciplina.getIdprofessor());
+                stm.setString(2, disciplina.getCodigo());
+                stm.setInt(3, disciplina.getIdprofessor());
                 stm.execute();
                 //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela disciplina");
             } catch (SQLException ex) {

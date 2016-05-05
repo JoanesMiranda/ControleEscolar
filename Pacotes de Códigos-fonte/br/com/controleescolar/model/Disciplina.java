@@ -13,8 +13,19 @@ public class Disciplina {
     
     private int iddisciplina;
     private String nome;
+    private String codigo;
     private int idprofessor;
 
+    public Disciplina() {
+    }
+
+    public Disciplina(int iddisciplina, String nome, String codigo, int idprofessor) {
+        this.iddisciplina = iddisciplina;
+        this.nome = nome;
+        this.codigo = codigo;
+        this.idprofessor = idprofessor;
+    }
+   
     /**
      * @return the iddisciplina
      */
@@ -55,6 +66,20 @@ public class Disciplina {
      */
     public void setIdprofessor(int idprofessor) {
         this.idprofessor = idprofessor;
+    }
+
+    /**
+     * @return the codigo
+     */
+    public String getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
     
     

@@ -21,13 +21,13 @@ public class AlunoTemDisciplinaController extends Conexao{
     public void salvar(Aluno aluno,Disciplina disciplina){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO AlunoTemDisciplinaController(FK_Aluno,FK_Disciplina)VALUES(?,?)");
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO AlunoTemDisciplina(FK_Aluno,FK_Disciplina)VALUES(?,?)");
                 stm.setInt(1, aluno.getIdaluno());
                 stm.setInt(2, disciplina.getIddisciplina());
                 stm.execute();
-                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela aluno");
+                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela AlunoTemDisciplina");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"erro ao salvar em aluno"+ex.getMessage());
+                JOptionPane.showMessageDialog(null,"erro ao salvar em AlunoTemDisciplina"+ex.getMessage());
             }
         fecharBanco();
     }    
