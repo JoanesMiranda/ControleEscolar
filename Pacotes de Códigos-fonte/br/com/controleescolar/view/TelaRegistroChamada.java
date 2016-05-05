@@ -5,10 +5,8 @@
  */
 package br.com.controleescolar.view;
 
-import br.com.controleescolar.controller.ProfessorController;
-import br.com.controleescolar.model.Login;
-
-
+import br.com.controleescolar.controller.ProfessorController;import br.com.controleescolar.controller.TurmaController;
+;
 
 /**
  *
@@ -23,12 +21,24 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         
         initComponents();
         
+        //seleciona o nome do professor logado no sistema e exibe na tela de registro de chamada
         if(!Sessao.getUsuario().isEmpty()){
            ProfessorController cprofessor = new ProfessorController();
            String usuario = Sessao.getUsuario();
            String senha = Sessao.getSenha();
            jTextFieldNomeProfessor.setText(cprofessor.pesquisarProfessorLogin(usuario,senha));
         }
+        
+        //Pesquisa todas as turmas salvas no BD e insere no "jComboBoxSelecionarTurma".
+        TurmaController turmaC = new TurmaController();
+        jComboBoxSelecionarTurma.removeAllItems();
+        
+        if(!turmaC.pesquisaTodasTurmas().isEmpty()){
+            for(int i = 0; i< turmaC.pesquisaTodasTurmas().size(); i++){
+                jComboBoxSelecionarTurma.addItem((String) turmaC.pesquisaTodasTurmas().get(i));
+            }
+        }
+          
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +69,6 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Frequência Escolar");
@@ -112,7 +121,6 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
 
         jButton1.setText("Salvar Alterações");
 
-        jComboBoxSelecionarTurma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxSelecionarTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSelecionarTurmaActionPerformed(evt);
@@ -180,8 +188,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxSelecionarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jComboBoxSelecionarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -202,10 +209,8 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jTextFieldNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel2)
                         .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -232,7 +237,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                                 .addComponent(jCheckBox6)
                                 .addComponent(jCheckBox5)))
                         .addGap(0, 209, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -254,9 +259,6 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxSelecionarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelecionarTurmaActionPerformed
-        //if(jComboBoxSelecionarTurma.getSelectedItem() == ){
-            //mostra todos os nomes de alunos cadatrados nessa turma
-        //}
 
     }//GEN-LAST:event_jComboBoxSelecionarTurmaActionPerformed
 
@@ -315,7 +317,6 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JComboBox<String> jComboBoxSelecionarTurma;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

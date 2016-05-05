@@ -8,6 +8,7 @@ package br.com.controleescolar.controller;
 import br.com.controleescolar.model.Login;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -56,35 +57,25 @@ public class LoginController extends Conexao{
         return confirma;
     } 
     //Pesquisa o usuario da tabela login e retorma para a interface do usuario
-    String usuario;
-    public String pesquisarLoginUsuario(int idprofessor){
+   
+    public ArrayList pesquisarLogin(int idprofessor){
+        ArrayList arrayLogin = new ArrayList();
         abrirBanco();
             try{
-                execultaSQL("SELECT usuario FROM login WHERE FK_professor = '"+idprofessor+"'");
+                execultaSQL("SELECT usuario,senha FROM login WHERE FK_professor = '"+idprofessor+"'");
                     rs.next();
-                    usuario = rs.getString("usuario");
+                    arrayLogin.add(rs.getString("usuario"));
+                    arrayLogin.add(rs.getString("senha"));
                     //JOptionPane.showMessageDialog(null,"Pesquisa concluida");
             }catch(SQLException ex){
                 JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
             }    
         fecharBanco();
-        return usuario;
+        return arrayLogin;
     }  
     //Pesquisa o usuario da tabela login e retorma para a interface do usuario
     String senha;
-    public String pesquisarLoginSenha(int idprofessor){
-        abrirBanco();
-            try{
-                execultaSQL("SELECT senha FROM login WHERE FK_professor = '"+idprofessor+"'");
-                    rs.next();
-                    senha = rs.getString("senha");
-                    //JOptionPane.showMessageDialog(null,"Pesquisa concluida");
-            }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
-            }    
-        fecharBanco();
-        return senha;
-    }
+   
     // altera o nome do usuario e senha do sistema
     public void atualizaLogin(String usuario,String senha,int idprofessor){
         abrirBanco();

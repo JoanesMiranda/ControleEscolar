@@ -8,6 +8,7 @@ package br.com.controleescolar.controller;
 import br.com.controleescolar.model.Aluno;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,35 +60,19 @@ public class AlunoControleler extends Conexao{
             }
         fecharBanco(); 
     }
-    
-    
-    public String pesquisaNomeAluno(String matricula){
-        String nome = null;
+   
+    public ArrayList pesquisaAluno(String matricula){
+        ArrayList arrayAluno = new ArrayList();
         abrirBanco();
         try {
-            execultaSQL("SELECT nome FROM aluno WHERE matricula = '"+ matricula+"'");
+            execultaSQL("SELECT nome,codcartaoarduino FROM aluno WHERE matricula = '"+ matricula+"'");
             rs.first();
-            nome = rs.getString("nome");
+            arrayAluno.add(rs.getString("nome"));
+            arrayAluno.add(rs.getString("codcartaoarduino"));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso"+ex.getMessage());
         }
         fecharBanco();
-        return nome;
-    }
-    
-   
-    public String pesquisaNomeCodarduino(String matricula){
-        String codArduino = null;
-        abrirBanco();
-        try {
-            execultaSQL("SELECT codcartaoarduino FROM aluno WHERE matricula ='"+ matricula+"'");
-            rs.first();
-            codArduino = rs.getString("codcartaoarduino");
-        } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null,"Pesquisa do codarduino realizada com sucesso"+ex.getMessage());
-        }
-        fecharBanco();
-        return codArduino;
-    }
-       
+        return arrayAluno;
+    }    
 }

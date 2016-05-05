@@ -9,6 +9,7 @@ import br.com.controleescolar.model.Professor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,17 +20,17 @@ public class ProfessorController extends Conexao{
     
     public void salvar(Professor professor){
            
-                abrirBanco(); 
-                   try {
-                        PreparedStatement stm = conn.prepareStatement("INSERT INTO professor(nome,matricula) VALUES(?,?)");
-                        stm.setString(1, professor.getNome());
-                        stm.setString(2, professor.getMatricula());
-                        stm.execute();
-                        JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela professor");
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null,"erro ao salvar em professor"+ex.getMessage());
-                    }
-                fecharBanco();   
+        abrirBanco(); 
+            try {
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO professor(nome,matricula) VALUES(?,?)");
+                stm.setString(1, professor.getNome());
+                stm.setString(2, professor.getMatricula());
+                stm.execute();
+                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela professor");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"erro ao salvar em professor"+ex.getMessage());
+            }
+        fecharBanco();   
     }
     
     public int insertIdProfessor(String matricula){
@@ -69,15 +70,14 @@ public class ProfessorController extends Conexao{
         abrirBanco();
             try{
                 execultaSQL("SELECT nome FROM professor WHERE matricula = '"+matricula+"'");
-                    rs.next();
-                    nome = rs.getString("nome");
+                rs.next();
+                nome = rs.getString("nome");
             }catch(SQLException ex){
                 JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
             }    
         fecharBanco();
         return nome;
     }  
-    
     
     public String pesquisarProfessorLogin(String usuario,String senha){
         String nomeProfessor = null;
@@ -129,4 +129,28 @@ public class ProfessorController extends Conexao{
         fecharBanco();
         return valor;
     }
+    public ArrayList pesquisaTodosProfessores(){
+     
+        ArrayList array = new ArrayList();
+        abrirBanco();
+        try {
+            execultaSQL("SELECT nome FROM professor");
+            rs.first();
+            do{
+                array.add(rs.getString("nome"));
+            }while(rs.next());
+                //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
+        } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Nenhum Professor Cadastrado!  "+ex.getMessage());
+        }    
+        return array;
+    }  
+    
+    
+    
+    
+    
+    
+    
+    
 }

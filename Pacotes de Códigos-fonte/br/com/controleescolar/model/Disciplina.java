@@ -19,8 +19,7 @@ public class Disciplina {
     public Disciplina() {
     }
 
-    public Disciplina(int iddisciplina, String nome, String codigo, int idprofessor) {
-        this.iddisciplina = iddisciplina;
+    public Disciplina(String nome, String codigo, int idprofessor) {
         this.nome = nome;
         this.codigo = codigo;
         this.idprofessor = idprofessor;

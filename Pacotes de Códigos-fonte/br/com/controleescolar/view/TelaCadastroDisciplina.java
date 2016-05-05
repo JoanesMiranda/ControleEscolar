@@ -5,6 +5,10 @@
  */
 package br.com.controleescolar.view;
 
+import br.com.controleescolar.controller.DisciplinaController;
+import br.com.controleescolar.controller.ProfessorController;
+import br.com.controleescolar.model.Disciplina;
+
 /**
  *
  * @author Joanes
@@ -16,6 +20,17 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
      */
     public TelaCadastroDisciplina() {
         initComponents();
+        
+        //Pesquisa todos os professores cadastrados no BD e insere no "jComboBoxNomeProfessor".
+        ProfessorController professorC = new ProfessorController();
+        jComboBoxNomeProfessor.removeAllItems();
+       
+        if(!professorC.pesquisaTodosProfessores().isEmpty()){
+            for(int i = 0; i < professorC.pesquisaTodosProfessores().size(); i++){
+                jComboBoxNomeProfessor.addItem((String) professorC.pesquisaTodosProfessores().get(i));
+            }
+        }
+       
     }
 
     /**
@@ -30,15 +45,15 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Nome = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Disciplina = new javax.swing.JTextField();
-        Professor = new javax.swing.JTextField();
+        JTextFieldNomeDisciplina = new javax.swing.JTextField();
+        JTextFieldCodigoDisciplina = new javax.swing.JTextField();
         jlabel = new javax.swing.JLabel();
         Cadastrar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         Sair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxNomeProfessor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Disciplina");
@@ -51,12 +66,12 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         jLabel5.setText("Cadastro de Disciplina");
         jLabel5.setToolTipText("");
 
-        Disciplina.setToolTipText("");
+        JTextFieldNomeDisciplina.setToolTipText("");
 
-        Professor.setToolTipText("");
-        Professor.addActionListener(new java.awt.event.ActionListener() {
+        JTextFieldCodigoDisciplina.setToolTipText("");
+        JTextFieldCodigoDisciplina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProfessorActionPerformed(evt);
+                JTextFieldCodigoDisciplinaActionPerformed(evt);
             }
         });
 
@@ -97,16 +112,10 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
 
         jLabel1.setText("Professor");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(Professor, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -117,27 +126,27 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel5))
+                            .addComponent(JTextFieldNomeDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTextFieldCodigoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(91, 91, 91)
-                        .addComponent(Disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel5)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Cadastrar, Sair, jButtonEditar, jButtonExcluir});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Professor, jComboBox1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JTextFieldCodigoDisciplina, jComboBoxNomeProfessor});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,16 +155,16 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextFieldNomeDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Nome))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Professor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextFieldCodigoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Sair, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -167,7 +176,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Cadastrar, Sair, jButtonEditar, jButtonExcluir});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBox1, jLabel1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBoxNomeProfessor, jLabel1});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,12 +195,18 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfessorActionPerformed
+    private void JTextFieldCodigoDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldCodigoDisciplinaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ProfessorActionPerformed
+    }//GEN-LAST:event_JTextFieldCodigoDisciplinaActionPerformed
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-       
+        DisciplinaController disciplinaC = new DisciplinaController();
+        
+        Disciplina disciplina = new Disciplina(JTextFieldNomeDisciplina.getText(),
+                JTextFieldCodigoDisciplina.getText(),disciplinaC.pesquisaIdProfessor(jComboBoxNomeProfessor.getSelectedItem().toString()));
+        
+        disciplinaC.salvar(disciplina);
+          
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
@@ -245,13 +260,13 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cadastrar;
-    private javax.swing.JTextField Disciplina;
+    private javax.swing.JTextField JTextFieldCodigoDisciplina;
+    private javax.swing.JTextField JTextFieldNomeDisciplina;
     private javax.swing.JLabel Nome;
-    private javax.swing.JTextField Professor;
     private javax.swing.JButton Sair;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxNomeProfessor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

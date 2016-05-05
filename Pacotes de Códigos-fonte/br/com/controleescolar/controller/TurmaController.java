@@ -9,6 +9,7 @@ import br.com.controleescolar.model.Turma;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -76,22 +77,21 @@ public class TurmaController extends Conexao{
              }
         fecharBanco();
     }
-    public String[] pesquisaTodasTurmas(){
-        int tam = 0;
-        String nomes[] = new String[20];
+    
+    public ArrayList pesquisaTodasTurmas(){
+     
+        ArrayList array = new ArrayList();
         abrirBanco();
         try {
             execultaSQL("SELECT nome FROM turma");
             rs.first();
             do{
-                nomes[tam] = rs.getString("nome");
-                tam++;
+                array.add(rs.getString("nome"));
             }while(rs.next());
-            //System.out.println(tam);
                 //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
         } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"Nenhum Medico Cadastrado!  "+ex.getMessage());
+                JOptionPane.showMessageDialog(null,"Nenhuma turma Cadastrada!  "+ex.getMessage());
         }    
-        return nomes;
+        return array;
     }  
 }

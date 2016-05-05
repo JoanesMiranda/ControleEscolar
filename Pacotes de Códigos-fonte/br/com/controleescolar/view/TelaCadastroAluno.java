@@ -6,8 +6,9 @@
 package br.com.controleescolar.view;
 
 import br.com.controleescolar.controller.AlunoControleler;
+import br.com.controleescolar.controller.DisciplinaController;
+import br.com.controleescolar.controller.TurmaController;
 import br.com.controleescolar.model.Aluno;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +21,25 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
      */
     public TelaCadastroAluno() {
         initComponents();
+        
+        TurmaController turmaC = new TurmaController();
+        jComboBoxTurmas.removeAllItems();
+       
+        if(!turmaC.pesquisaTodasTurmas().isEmpty()){
+            for(int i = 0; i < turmaC.pesquisaTodasTurmas().size(); i++){
+                jComboBoxTurmas.addItem((String) turmaC.pesquisaTodasTurmas().get(i));
+            }
+        }
+        
+        //Pesquisa todas as turmas salvas no BD e insere no "jComboBoxSelecionarTurma".
+        DisciplinaController disciplinaC = new DisciplinaController();
+        jComboBoxDisciplinas.removeAllItems();
+        
+        if(!disciplinaC.pesquisaTodasDisciplinas().isEmpty()){
+            for(int i = 0; i< disciplinaC.pesquisaTodasDisciplinas().size(); i++){
+                jComboBoxDisciplinas.addItem((String) disciplinaC.pesquisaTodasDisciplinas().get(i));
+            }
+        }   
     }
 
     /**
@@ -45,9 +65,9 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
         jButtonPesquisar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxDisciplinas = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBoxTurmas = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Aluno");
@@ -108,11 +128,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
 
         jLabel3.setText("Disciplina");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel4.setText("Turma");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,7 +150,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxDisciplinas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Codcartaoarduino, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addComponent(jTextMatricula, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -144,7 +160,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxTurmas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,7 +195,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxDisciplinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,7 +203,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -245,8 +261,8 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         //pesquisa as informações do aluno no BD e retorma para os campos da telaAluno
         AlunoControleler caluno = new AlunoControleler();
-        jTextNome.setText(caluno.pesquisaNomeAluno(jTextMatricula.getText()));
-        Codcartaoarduino.setText(caluno.pesquisaNomeCodarduino(jTextMatricula.getText()));
+        jTextNome.setText((String) caluno.pesquisaAluno(jTextMatricula.getText()).get(0));
+        Codcartaoarduino.setText((String) caluno.pesquisaAluno(jTextMatricula.getText()).get(1));
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void CodcartaoarduinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodcartaoarduinoActionPerformed
@@ -296,8 +312,8 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonPesquisar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBoxDisciplinas;
+    private javax.swing.JComboBox<String> jComboBoxTurmas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

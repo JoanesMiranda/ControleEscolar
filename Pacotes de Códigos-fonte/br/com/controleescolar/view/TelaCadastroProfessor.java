@@ -27,15 +27,14 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         
         TurmaController turmaC = new TurmaController();
         jComboBoxTurmas.removeAllItems();
-        //jComboBoxTurmas.addItem(turmaC.pesquisaTodasTurmas());
-        for(int i=0; i < turmaC.pesquisaTodasTurmas().length ; i++){
-            jComboBoxTurmas.addItem(turmaC.pesquisaTodasTurmas()[i]);
+       
+        if(!turmaC.pesquisaTodasTurmas().isEmpty()){
+            for(int i = 0; i < turmaC.pesquisaTodasTurmas().size(); i++){
+                jComboBoxTurmas.addItem((String) turmaC.pesquisaTodasTurmas().get(i));
+            }
         }
-        
-        
-        
-        
     }
+    
     public void limparCampos(){
         jTextNome.setText("");
         jFormattedTextFieldMatricula.setText("");
@@ -299,14 +298,14 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         LoginController clogin = new LoginController();
         //pesquisa nome,senha pela FK do professor
         Login login = new Login();
-        jTextFieldUsuario.setText(clogin.pesquisarLoginUsuario(cprof.insertIdProfessor(jFormattedTextFieldMatricula.getText())));
-        jPasswordFieldSenha.setText(clogin.pesquisarLoginSenha(cprof.insertIdProfessor(jFormattedTextFieldMatricula.getText())));
+        jTextFieldUsuario.setText((String) clogin.pesquisarLogin(cprof.insertIdProfessor(jFormattedTextFieldMatricula.getText())).get(0));
+        jPasswordFieldSenha.setText((String) clogin.pesquisarLogin(cprof.insertIdProfessor(jFormattedTextFieldMatricula.getText())).get(1));
       
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
        //Atualiza as informações da tabela professor
-        ProfessorController cprofessor = new ProfessorController();
+       ProfessorController cprofessor = new ProfessorController();
        cprofessor.atualizaProfessor(jTextNome.getText(),jFormattedTextFieldMatricula.getText());
        LoginController clogin = new LoginController();
        clogin.atualizaLogin(jTextFieldUsuario.getText(), jPasswordFieldSenha.getText(),
