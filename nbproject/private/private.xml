@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/view/TelaCadastroAluno.java</file>
             <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/view/TelaCadastroTurma.java</file>
             <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/dao/LoginDAO.java</file>
             <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/view/TelaCadastroDisciplina.java</file>
             <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/controller/TurmaController.java</file>
             <file>file:/C:/Users/Suporte/Documents/NetBeansProjects/ControleEscolar/Pacotes%20de%20Códigos-fonte/br/com/controleescolar/view/TelaRegistroChamada.java</file>
+=======
+            <file>file:/C:/Users/Joanes/Documents/NetBeansProjects/ControleEscolar/src/br/com/controleescolar/controller/AlunoDao.java</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>
