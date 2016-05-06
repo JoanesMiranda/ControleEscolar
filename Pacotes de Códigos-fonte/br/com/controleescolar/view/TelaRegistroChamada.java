@@ -38,7 +38,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                 jComboBoxSelecionarTurma.addItem((String) turmaC.pesquisaTodasTurmas().get(i));
             }
         }
-          
+   
     }
     /**
      * This method is called from within the constructor to initialize the form.
