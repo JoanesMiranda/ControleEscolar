@@ -27,7 +27,7 @@ public class TurmaController extends Conexao{
                 stm.setString(1, turma.getNome());
                 stm.setString(2, turma.getCodigo());
                 stm.execute();
-                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela turma");
+                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela turma");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"erro ao salvar em turma"+ex.getMessage());
             }
@@ -43,6 +43,7 @@ public class TurmaController extends Conexao{
                 ResultSet rs = stm.executeQuery();
                 rs.first();
                 nome = rs.getString("nome");
+                 JOptionPane.showMessageDialog(null,"Dados salvo com sucesso");
            } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null," não cadastrado na base de dados"+ex.getMessage());
            }
@@ -57,7 +58,7 @@ public class TurmaController extends Conexao{
                 PreparedStatement stm = conn.prepareStatement("DELETE FROM turma WHERE codigo = ?");
                 stm.setString(1,codigo);
                 stm.execute();
-                 //JOptionPane.showMessageDialog(null,"Dados apagados com sucesso");
+                JOptionPane.showMessageDialog(null,"Dados apagados com sucesso");
              } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"erro ao apagar dados da tabela turma"+ex.getMessage());
              }
@@ -71,7 +72,7 @@ public class TurmaController extends Conexao{
                  stm.setString(1,nome);
                  stm.setString(2,codigo);
                  stm.executeUpdate();
-                 //JOptionPane.showMessageDialog(null, "dados atulizados com sucesso");
+                 JOptionPane.showMessageDialog(null, "dados atulizados com sucesso");
              } catch (SQLException ex) {
                  JOptionPane.showMessageDialog(null, "Erro ao atulizar a tabela turma"+ex.getMessage());
              }

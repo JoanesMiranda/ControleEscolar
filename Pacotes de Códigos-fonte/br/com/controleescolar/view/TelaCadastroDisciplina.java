@@ -8,7 +8,6 @@ package br.com.controleescolar.view;
 import br.com.controleescolar.controller.DisciplinaController;
 import br.com.controleescolar.controller.ProfessorController;
 import br.com.controleescolar.model.Disciplina;
-import java.util.Dictionary;
 
 /**
  *
@@ -245,17 +244,16 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        //fecha a telaAluno sem fechar o projeto
+        //fecha a TelaDisciplina sem fechar o projeto
         dispose();
     }//GEN-LAST:event_SairActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
          DisciplinaController disciplinaC = new DisciplinaController();
-         disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText());
-         for(int i = 0; i < disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).size();i++ ){
+         jComboBoxNomeProfessor.removeAllItems();
              JTextFieldNomeDisciplina.setText((String) disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).get(0));
-            jComboBoxNomeProfessor.setSelectedItem(disciplinaC.pesquisaIdProfessor((String) disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).get(1)));
-         }      
+               jComboBoxNomeProfessor.addItem(disciplinaC.pesquisaNomeProfessor((int) (disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).get(1))));
+             
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     /**

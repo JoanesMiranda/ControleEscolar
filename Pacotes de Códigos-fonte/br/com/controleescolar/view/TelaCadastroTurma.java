@@ -20,7 +20,10 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
     public TelaCadastroTurma() {
         initComponents();
     }
-
+    public void limparCampos(){
+        JTextFildNome.setText("");
+        JTexFildCodigo.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -184,18 +187,21 @@ public class TelaCadastroTurma extends javax.swing.JFrame {
         Turma turma = new Turma(JTextFildNome.getText(),JTexFildCodigo.getText());
         TurmaController turmaController = new TurmaController();
         turmaController.salvarTurma(turma);
+        limparCampos();
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         //
         TurmaController turmaController = new TurmaController();
         turmaController.apagarTuma(JTexFildCodigo.getText());
+        limparCampos();
         
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
       TurmaController turmaController = new TurmaController();
       turmaController.atualizarTurma(JTextFildNome.getText(),JTexFildCodigo.getText());
+      limparCampos();
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
