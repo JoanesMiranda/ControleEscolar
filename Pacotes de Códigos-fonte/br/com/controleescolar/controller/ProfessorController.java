@@ -145,12 +145,5 @@ public class ProfessorController extends Conexao{
         }    
         return array;
     }  
-    
-    
-    
-    
-    
-    
-    
-    
+        
 }

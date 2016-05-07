@@ -35,6 +35,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         CadastraAluno = new javax.swing.JButton();
         CadastraTurma = new javax.swing.JButton();
         CadastraDisciplina = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         Sair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -56,16 +57,38 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         setResizable(false);
 
         CadastraProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ICON_Professor.png"))); // NOI18N
+        CadastraProfessor.setText("nome ?");
+        CadastraProfessor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CadastraProfessor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         Relatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1462583365_edit-paste.png"))); // NOI18N
+        Relatorios.setText("Relatorios");
+        Relatorios.setToolTipText("Relatorios da Chamada Escolar");
+        Relatorios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Relatorios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         CadastraAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone-de-usuario-do-sexo-masculino_17-810120247.png"))); // NOI18N
+        CadastraAluno.setText("nome ?");
+        CadastraAluno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CadastraAluno.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         CadastraTurma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/turma-de-alunos-e-professora-na-frente_318-59659.png"))); // NOI18N
+        CadastraTurma.setText("nome ?");
+        CadastraTurma.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CadastraTurma.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         CadastraDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Sem Título-1.png"))); // NOI18N
+        CadastraDisciplina.setText("nome ?");
+        CadastraDisciplina.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CadastraDisciplina.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/sair.png"))); // NOI18N
+        Sair.setText("Sair");
+        Sair.setToolTipText("Sair");
+        Sair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Sair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SairActionPerformed(evt);
@@ -81,37 +104,44 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(CadastraAluno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CadastraDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(CadastraProfessor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CadastraTurma)
-                        .addGap(18, 18, 18)
-                        .addComponent(Relatorios)
-                        .addGap(18, 18, 18)
-                        .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addComponent(CadastraAluno)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CadastraDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CadastraProfessor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CadastraTurma)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Relatorios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {CadastraAluno, CadastraDisciplina, CadastraProfessor, CadastraTurma, Relatorios, Sair});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CadastraTurma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CadastraDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(CadastraAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Relatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CadastraProfessor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(45, 45, 45)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addComponent(CadastraDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CadastraProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CadastraTurma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Relatorios)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CadastraAluno, CadastraDisciplina, CadastraProfessor, CadastraTurma, Relatorios, Sair, jSeparator1});
 
         jMenu1.setText("Arquivos");
 
@@ -208,12 +238,10 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(686, 639));
+        setSize(new java.awt.Dimension(675, 606));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,7 +282,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        // TODO add your handling code here:
+        System.exit(1);
     }//GEN-LAST:event_SairActionPerformed
 
     /**
@@ -314,5 +342,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemRelatorioChamadas;
     private javax.swing.JMenuItem jMenuItemTurma;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

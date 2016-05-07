@@ -8,6 +8,7 @@ package br.com.controleescolar.view;
 import br.com.controleescolar.controller.DisciplinaController;
 import br.com.controleescolar.controller.ProfessorController;
 import br.com.controleescolar.model.Disciplina;
+import java.util.Dictionary;
 
 /**
  *
@@ -32,7 +33,11 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         }
        
     }
-
+    public void limparCampos(){
+        JTextFieldNomeDisciplina.setText("");
+        JTextFieldCodigoDisciplina.setText("");
+        jComboBoxNomeProfessor.setSelectedItem("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,6 +59,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
         Sair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBoxNomeProfessor = new javax.swing.JComboBox<>();
+        jButtonPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Disciplina");
@@ -112,6 +118,14 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
 
         jLabel1.setText("Professor");
 
+        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisar.png"))); // NOI18N
+        jButtonPesquisar.setToolTipText("Pesquisar");
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -125,10 +139,13 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                             .addComponent(jlabel)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTextFieldNomeDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTextFieldCodigoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(JTextFieldCodigoDisciplina)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JTextFieldNomeDisciplina, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addComponent(jComboBoxNomeProfessor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,22 +163,23 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Cadastrar, Sair, jButtonEditar, jButtonExcluir});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JTextFieldCodigoDisciplina, jComboBoxNomeProfessor});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel5)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTextFieldNomeDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nome))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTextFieldCodigoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlabel))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JTextFieldNomeDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Nome))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JTextFieldCodigoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlabel)))
+                    .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jComboBoxNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -171,7 +189,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                     .addComponent(jButtonEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jButtonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Cadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Cadastrar, Sair, jButtonEditar, jButtonExcluir});
@@ -206,22 +224,39 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
                 JTextFieldCodigoDisciplina.getText(),disciplinaC.pesquisaIdProfessor(jComboBoxNomeProfessor.getSelectedItem().toString()));
         
         disciplinaC.salvar(disciplina);
+        limparCampos();
           
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-       
+        
+        DisciplinaController disciplinaC = new DisciplinaController();
+        disciplinaC.deletaDisciplina(JTextFieldCodigoDisciplina.getText());
+        limparCampos();
+        
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        //alualiza as informaçõees do aluno na tabela aluno
-        
+        DisciplinaController disciplinaC = new DisciplinaController();
+        disciplinaC.atualizaDisciplina(JTextFieldNomeDisciplina.getText(),
+                disciplinaC.pesquisaIdProfessor((String) jComboBoxNomeProfessor.getSelectedItem()),
+                JTextFieldCodigoDisciplina.getText());
+        limparCampos();
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
         //fecha a telaAluno sem fechar o projeto
         dispose();
     }//GEN-LAST:event_SairActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+         DisciplinaController disciplinaC = new DisciplinaController();
+         disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText());
+         for(int i = 0; i < disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).size();i++ ){
+             JTextFieldNomeDisciplina.setText((String) disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).get(0));
+            jComboBoxNomeProfessor.setSelectedItem(disciplinaC.pesquisaIdProfessor((String) disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).get(1)));
+         }      
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,6 +301,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
     private javax.swing.JButton Sair;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JComboBox<String> jComboBoxNomeProfessor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
