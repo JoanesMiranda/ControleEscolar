@@ -6,6 +6,7 @@
 package br.com.controleescolar.view;
 
 import br.com.controleescolar.controller.LoginController;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,6 +66,11 @@ public class TelaLogin extends javax.swing.JFrame {
         JButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JButtonEntrarActionPerformed(evt);
+            }
+        });
+        JButtonEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JButtonEntrarKeyPressed(evt);
             }
         });
 
@@ -186,6 +192,14 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         new TelaCadastroProfessor().setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void JButtonEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JButtonEntrarKeyPressed
+        int tecla;
+        tecla = evt.getKeyCode();
+        if (tecla == KeyEvent.VK_ENTER) {
+            new TelaMenuPrincipal().setVisible(true);        
+        }
+    }//GEN-LAST:event_JButtonEntrarKeyPressed
 
     /**
      * @param args the command line arguments
