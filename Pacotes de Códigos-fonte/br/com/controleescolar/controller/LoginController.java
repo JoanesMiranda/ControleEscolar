@@ -51,7 +51,7 @@ public class LoginController extends Conexao{
                }while(rs.next()); // pega os demais eleemntos da tabela
                 
             }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+                //JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
             }    
         fecharBanco();
         return confirma;

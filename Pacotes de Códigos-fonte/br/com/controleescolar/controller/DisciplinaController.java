@@ -7,6 +7,7 @@ package br.com.controleescolar.controller;
 
 import br.com.controleescolar.model.Disciplina;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -122,4 +123,19 @@ public class DisciplinaController extends Conexao{
         return nomeProfessor;
       }
       
+      public int insertIdDisciplina(String nome){
+        int iddisciplina = 0;
+        abrirBanco();
+            try{
+                PreparedStatement stm = conn.prepareStatement("SELECT idDisciplina FROM disciplina WHERE nome =?");
+                stm.setString(1, nome);
+                ResultSet rs = stm.executeQuery();
+                rs.next();
+                iddisciplina= rs.getInt("idDisciplina");
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar iddisciplina"+ex);
+            }    
+        fecharBanco();
+        return iddisciplina;
+    }      
 }

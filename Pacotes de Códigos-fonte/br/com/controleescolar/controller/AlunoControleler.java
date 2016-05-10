@@ -7,6 +7,7 @@ package br.com.controleescolar.controller;
 
 import br.com.controleescolar.model.Aluno;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -75,4 +76,25 @@ public class AlunoControleler extends Conexao{
         fecharBanco();
         return arrayAluno;
     }    
+    public int insertIdAluno(String matricula){
+        int idaluno = 0;
+        abrirBanco();
+            try{
+                PreparedStatement stm = conn.prepareStatement("SELECT idAluno FROM aluno WHERE matricula =?");
+                stm.setString(1, matricula);
+                ResultSet rs = stm.executeQuery();
+                rs.next();
+                idaluno = rs.getInt("idAluno");
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+            }    
+        fecharBanco();
+        return idaluno;
+    }      
+    
+    
+    
+    
+    
+    
 }

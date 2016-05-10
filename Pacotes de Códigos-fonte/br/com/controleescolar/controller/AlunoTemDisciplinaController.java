@@ -18,12 +18,12 @@ import javax.swing.JOptionPane;
 public class AlunoTemDisciplinaController extends Conexao{
     
      
-    public void salvar(Aluno aluno,Disciplina disciplina){
+    public void salvar(int idaluno,int iddisciplina){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO AlunoTemDisciplina(FK_Aluno,FK_Disciplina)VALUES(?,?)");
-                stm.setInt(1, aluno.getIdaluno());
-                stm.setInt(2, disciplina.getIddisciplina());
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO Aluno_has_Disciplina(FK_Aluno,FK_Disciplina)VALUES(?,?)");
+                stm.setInt(1, idaluno);
+                stm.setInt(2, iddisciplina);
                 stm.execute();
                 JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela AlunoTemDisciplina");
             } catch (SQLException ex) {

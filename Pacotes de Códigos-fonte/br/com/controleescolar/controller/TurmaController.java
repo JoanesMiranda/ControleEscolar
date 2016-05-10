@@ -43,7 +43,7 @@ public class TurmaController extends Conexao{
                 ResultSet rs = stm.executeQuery();
                 rs.first();
                 nome = rs.getString("nome");
-                 JOptionPane.showMessageDialog(null,"Dados salvo com sucesso");
+                //JOptionPane.showMessageDialog(null,"pesquisa realizada com sucesso");
            } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null," não cadastrado na base de dados"+ex.getMessage());
            }
@@ -91,8 +91,24 @@ public class TurmaController extends Conexao{
             }while(rs.next());
                 //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
         } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"Nenhuma turma Cadastrada!  "+ex.getMessage());
+                //JOptionPane.showMessageDialog(null,"Nenhuma turma Cadastrada!  "+ex.getMessage());
         }    
         return array;
     }  
+    
+    public int insertIdTurma(String nome){
+        int idturma = 0;
+        abrirBanco();
+            try{
+                PreparedStatement stm = conn.prepareStatement("SELECT idTurma FROM turma WHERE nome =?");
+                stm.setString(1, nome);
+                ResultSet rs = stm.executeQuery();
+                rs.next();
+                idturma = rs.getInt("idTurma");
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+            }    
+        fecharBanco();
+        return idturma;
+    }      
 }

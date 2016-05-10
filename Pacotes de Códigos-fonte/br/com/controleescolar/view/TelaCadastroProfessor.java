@@ -8,6 +8,7 @@ package br.com.controleescolar.view;
 import br.com.controleescolar.controller.LoginController;
 import br.com.controleescolar.controller.ProfessorController;
 import br.com.controleescolar.controller.TurmaController;
+import br.com.controleescolar.controller.TurmaTemProfessorController;
 import br.com.controleescolar.model.Login;
 import br.com.controleescolar.model.Professor;
 import javax.swing.JOptionPane;
@@ -275,6 +276,14 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
             LoginController cLogin = new LoginController();
             cLogin.salvar(login);
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Salva o idTurma e o idProfessor na tabela TurmaTemProfessor.
+        TurmaController turmaC = new TurmaController();
+        ProfessorController professorC = new ProfessorController();
+        TurmaTemProfessorController temProfessor = new TurmaTemProfessorController();
+       
+        temProfessor.salvar(turmaC.insertIdTurma(jComboBoxTurmas.getSelectedItem().toString()),professorC.insertIdProfessor(jFormattedTextFieldMatricula.getText()));
+           
         //limpa campos
         limparCampos();    
     }//GEN-LAST:event_CadastrarActionPerformed

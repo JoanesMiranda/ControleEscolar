@@ -6,9 +6,12 @@
 package br.com.controleescolar.view;
 
 import br.com.controleescolar.controller.AlunoControleler;
+import br.com.controleescolar.controller.AlunoTemDisciplinaController;
 import br.com.controleescolar.controller.DisciplinaController;
 import br.com.controleescolar.controller.TurmaController;
+import br.com.controleescolar.controller.TurmaTemAlunoController;
 import br.com.controleescolar.model.Aluno;
+import br.com.controleescolar.model.AlunoTemDisciplina;
 
 /**
  *
@@ -41,6 +44,17 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
             }
         }   
     }
+    
+    public void limpaCampos(){
+        jTextNome.setText("");
+        jTextMatricula.setText("");
+        Codcartaoarduino.setText("");
+        jComboBoxDisciplinas.setSelectedItem("");
+        jComboBoxTurmas.setSelectedItem("");
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -235,10 +249,26 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        //salva as informações do aluno no BD
-        Aluno aluno = new Aluno(jTextNome.getText(),jTextMatricula.getText(),Codcartaoarduino.getText());
-        AlunoControleler caluno = new AlunoControleler();
-        caluno.salvar(aluno);
+    //salva as informações do aluno no BD
+    Aluno aluno = new Aluno(jTextNome.getText(),jTextMatricula.getText(),Codcartaoarduino.getText());
+    AlunoControleler caluno = new AlunoControleler();
+    caluno.salvar(aluno);
+    
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //salva o idturma e o idaluno na tabela Turma_has_Aluno
+    TurmaController turmaC = new TurmaController();
+    AlunoControleler alunoC = new AlunoControleler();
+    
+    TurmaTemAlunoController turmaAluno = new TurmaTemAlunoController();
+    turmaAluno.salvar(turmaC.insertIdTurma(jComboBoxTurmas.getSelectedItem().toString()), alunoC.insertIdAluno(jTextMatricula.getText()));
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //salva o idaluno e o iddisciplina na tabela aluno_has_disciplina.
+    DisciplinaController disciplinaC = new DisciplinaController();
+    
+    AlunoTemDisciplinaController alunoDisciplina = new AlunoTemDisciplinaController();
+    alunoDisciplina.salvar( caluno.insertIdAluno(jTextMatricula.getText()), disciplinaC.insertIdDisciplina(jComboBoxDisciplinas.getSelectedItem().toString()));
+    ////////////////////////////////////////////////////////////////////////////////////////
+    limpaCampos();
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
