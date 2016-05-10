@@ -188,10 +188,13 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagens/ICON_Professor.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="nome ?"/>
+            <Property name="text" type="java.lang.String" value="Professor"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastraProfessorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Relatorios">
           <Properties>
@@ -209,30 +212,39 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagens/icone-de-usuario-do-sexo-masculino_17-810120247.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="nome ?"/>
+            <Property name="text" type="java.lang.String" value="Alunos"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastraAlunoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="CadastraTurma">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagens/turma-de-alunos-e-professora-na-frente_318-59659.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="nome ?"/>
+            <Property name="text" type="java.lang.String" value="Turmas"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastraTurmaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="CadastraDisciplina">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagens/Sem T&#xed;tulo-1.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="nome ?"/>
+            <Property name="text" type="java.lang.String" value="Disciplinas"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastraDisciplinaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
           <Properties>

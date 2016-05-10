@@ -57,9 +57,14 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         setResizable(false);
 
         CadastraProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ICON_Professor.png"))); // NOI18N
-        CadastraProfessor.setText("nome ?");
+        CadastraProfessor.setText("Professor");
         CadastraProfessor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CadastraProfessor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        CadastraProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraProfessorActionPerformed(evt);
+            }
+        });
 
         Relatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/1462583365_edit-paste.png"))); // NOI18N
         Relatorios.setText("Relatorios");
@@ -68,19 +73,34 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         Relatorios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         CadastraAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone-de-usuario-do-sexo-masculino_17-810120247.png"))); // NOI18N
-        CadastraAluno.setText("nome ?");
+        CadastraAluno.setText("Alunos");
         CadastraAluno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CadastraAluno.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        CadastraAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraAlunoActionPerformed(evt);
+            }
+        });
 
         CadastraTurma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/turma-de-alunos-e-professora-na-frente_318-59659.png"))); // NOI18N
-        CadastraTurma.setText("nome ?");
+        CadastraTurma.setText("Turmas");
         CadastraTurma.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CadastraTurma.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        CadastraTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraTurmaActionPerformed(evt);
+            }
+        });
 
         CadastraDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Sem Título-1.png"))); // NOI18N
-        CadastraDisciplina.setText("nome ?");
+        CadastraDisciplina.setText("Disciplinas");
         CadastraDisciplina.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         CadastraDisciplina.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        CadastraDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraDisciplinaActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -284,6 +304,22 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
         System.exit(1);
     }//GEN-LAST:event_SairActionPerformed
+
+    private void CadastraTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastraTurmaActionPerformed
+        new TelaCadastroTurma().setVisible(true);
+    }//GEN-LAST:event_CadastraTurmaActionPerformed
+
+    private void CadastraProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastraProfessorActionPerformed
+        new TelaCadastroProfessor().setVisible(true);
+    }//GEN-LAST:event_CadastraProfessorActionPerformed
+
+    private void CadastraDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastraDisciplinaActionPerformed
+        new TelaCadastroDisciplina().setVisible(true);
+    }//GEN-LAST:event_CadastraDisciplinaActionPerformed
+
+    private void CadastraAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastraAlunoActionPerformed
+        new TelaCadastroAluno().setVisible(true);
+    }//GEN-LAST:event_CadastraAlunoActionPerformed
 
     /**
      * @param args the command line arguments
