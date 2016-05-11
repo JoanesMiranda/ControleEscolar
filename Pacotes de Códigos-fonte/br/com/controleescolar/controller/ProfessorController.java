@@ -49,14 +49,11 @@ public class ProfessorController extends Conexao{
         return idprofessor;
     }    
     
-    public void exluirProfessor(String matricula,String senha){
+    public void exluirProfessor(String matricula){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("DELETE login,professor FROM login INNER JOIN"
-                        + " professor ON login.FK_Professor = professor.idprofessor"
-                        + " WHERE login.usuario = ? AND login.senha = ?");
+                PreparedStatement stm = conn.prepareStatement("DELETE  FROM professor WHERE  matricula = ?");
                 stm.setString(1,matricula);
-                stm.setString(2,senha);
                 stm.execute();
                 JOptionPane.showMessageDialog(null,"Excluido com sucesso na tabela professor");
             } catch (SQLException ex) {

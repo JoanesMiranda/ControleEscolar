@@ -296,7 +296,7 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
         Professor prof = new Professor();
       
         ProfessorController cprof = new ProfessorController();
-        cprof.exluirProfessor(jTextFieldUsuario.getText(),jPasswordFieldSenha.getText());
+        cprof.exluirProfessor(jFormattedTextFieldMatricula.getText());
         limparCampos();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
