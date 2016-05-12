@@ -5,8 +5,9 @@
  */
 package br.com.controleescolar.view;
 
-import br.com.controleescolar.controller.ProfessorController;import br.com.controleescolar.controller.TurmaController;
-;
+import br.com.controleescolar.controller.ProfessorController;
+import br.com.controleescolar.controller.TurmaController;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -38,8 +39,13 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                 jComboBoxSelecionarTurma.addItem((String) turmaC.pesquisaTodasTurmas().get(i));
             }
         }
-   
+        
+     ////////////////////////////////////////////////////////////////////////////////////////   
+      DefaultTableModel NomesDosAlunos = (DefaultTableModel) jTableNomesDosAlunos.getModel();
+      Object[] nomes = {jComboBoxSelecionarTurma.getSelectedItem()};
+      NomesDosAlunos.addRow(nomes);
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
