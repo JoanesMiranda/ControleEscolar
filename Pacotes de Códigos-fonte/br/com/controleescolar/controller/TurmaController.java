@@ -110,5 +110,46 @@ public class TurmaController extends Conexao{
             }    
         fecharBanco();
         return idturma;
-    }      
+    } 
+    ////////////////////////////////////////////////////////////////////////////
+    public ArrayList nomeTurma (int idTurma){
+         ArrayList array = new ArrayList();
+        abrirBanco();
+            try {
+                execultaSQL("SELECT nome FROM turma WHERE idTurma = '"+idTurma+"'");
+                rs.first();
+                do{
+                    array.add(rs.getString("nome"));
+                }while(rs.next());
+                    //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
+            } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null,"erro ao pegar nome da turma!  "+ex.getMessage());
+            }    
+        return array;
+    } 
+    
+    public int retornaIdTurmaHasProfessor(String nome){
+        int idturma = 0;
+        abrirBanco();
+            try{
+                PreparedStatement stm = conn.prepareStatement("SELECT FK_Turma FROM turma_has_professor WHERE FK_Professor ="
+                        + " (SELECT idProfessor FROM professor WHERE nome = '"+nome+"')");
+            
+                ResultSet rs = stm.executeQuery();
+                rs.first();
+                idturma = rs.getInt("FK_Turma");
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados do metodo retornaIdTurmasHasProfessor"+ex);
+            }    
+        fecharBanco();
+        return idturma;
+    } 
+    ////////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    
+    
+    
+    
 }
