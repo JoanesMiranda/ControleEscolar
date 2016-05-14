@@ -71,7 +71,7 @@ public class AlunoControleler extends Conexao{
             arrayAluno.add(rs.getString("nome"));
             arrayAluno.add(rs.getString("codcartaoarduino"));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso"+ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso em aluno"+ex.getMessage());
         }
         fecharBanco();
         return arrayAluno;
@@ -92,9 +92,22 @@ public class AlunoControleler extends Conexao{
         return idaluno;
     }      
     
-    
-    
-    
-    
-    
+    public ArrayList pesquisaTodosAlunos(String nomeTurma){
+        ArrayList arrayAluno = new ArrayList();
+        abrirBanco();
+        try {
+            execultaSQL("SELECT nome FROM aluno WHERE idAluno IN"
+                    + "(SELECT FK_Aluno FROM turma_has_aluno WHERE FK_Turma = "
+                    + "(SELECT idTurma FROM turma WHERE nome = '"+nomeTurma+"'))");
+            rs.first();
+            do{
+                arrayAluno.add(rs.getString("nome"));
+            }while(rs.next());
+            JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso em todos os alunos");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"erro na pesquisa de todos os alunos"+ex.getMessage());
+        }
+        fecharBanco();
+        return arrayAluno;
+    }     
 }

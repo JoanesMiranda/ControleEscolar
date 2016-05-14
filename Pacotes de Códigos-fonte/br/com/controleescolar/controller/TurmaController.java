@@ -112,6 +112,7 @@ public class TurmaController extends Conexao{
         return idturma;
     } 
     ////////////////////////////////////////////////////////////////////////////
+    /**
     public ArrayList nomeTurma (int idTurma){
          ArrayList array = new ArrayList();
         abrirBanco();
@@ -127,22 +128,24 @@ public class TurmaController extends Conexao{
             }    
         return array;
     } 
+    * */
     
-    public int retornaIdTurmaHasProfessor(String nome){
-        int idturma = 0;
+    public ArrayList retornaTurmaHasProfessor(String nome){
+        ArrayList array = new ArrayList();
         abrirBanco();
             try{
-                PreparedStatement stm = conn.prepareStatement("SELECT FK_Turma FROM turma_has_professor WHERE FK_Professor ="
-                        + " (SELECT idProfessor FROM professor WHERE nome = '"+nome+"')");
-            
-                ResultSet rs = stm.executeQuery();
+                execultaSQL("SELECT nome FROM turma WHERE idTurma IN"
+                        + "(SELECT FK_Turma FROM turma_has_professor WHERE FK_Professor IN"
+                        + " (SELECT idProfessor FROM Professor WHERE nome = '"+nome+"'))");
                 rs.first();
-                idturma = rs.getInt("FK_Turma");
+                do{
+                    array.add(rs.getString("nome"));
+                }while(rs.next());
             }catch(SQLException ex){
                 JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados do metodo retornaIdTurmasHasProfessor"+ex);
             }    
         fecharBanco();
-        return idturma;
+        return array;
     } 
     ////////////////////////////////////////////////////////////////////////////
     
