@@ -138,4 +138,24 @@ public class DisciplinaController extends Conexao{
         fecharBanco();
         return iddisciplina;
     }      
+    
+    public ArrayList pesquisaDisciplinaProfessor(String nomeProfessor){
+          
+        ArrayList array = new ArrayList();
+        abrirBanco();
+            try {
+                execultaSQL("SELECT nome FROM disciplina WHERE FK_Professor ="
+                        + " (SELECT idProfessor FROM professor WHERE nome = '"+nomeProfessor+"')");
+                rs.first();
+                do{
+                    array.add(rs.getString("nome"));
+                }while(rs.next());
+                    //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
+            } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null,"Nenhuma Disciplina Cadastrada!  "+ex.getMessage());
+            } 
+        fecharBanco();
+        return array;   
+      }
+       
 }

@@ -142,5 +142,26 @@ public class ProfessorController extends Conexao{
         }    
         return array;
     }  
+    
+    public int pesquisaProfessoreNome(String nome){
+     
+        int idProfessor = 0;
+        abrirBanco();
+        try {
+            execultaSQL("SELECT idProfessor FROM professor WHERE nome = '"+nome+"'");
+            rs.first();
+            do{
+                idProfessor = rs.getInt("idProfessor");
+            }while(rs.next());
+                //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
+        } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Nenhum Professor Cadastrado!  "+ex.getMessage());
+        }    
+        return idProfessor;
+    }  
+    
+    
+    
+    
         
 }

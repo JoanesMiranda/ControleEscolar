@@ -103,7 +103,7 @@ public class AlunoControleler extends Conexao{
             do{
                 arrayAluno.add(rs.getString("nome"));
             }while(rs.next());
-            JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso em todos os alunos");
+            //JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso em todos os alunos");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"erro na pesquisa de todos os alunos"+ex.getMessage());
         }

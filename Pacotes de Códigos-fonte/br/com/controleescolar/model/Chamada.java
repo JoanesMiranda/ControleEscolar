@@ -12,9 +12,18 @@ package br.com.controleescolar.model;
 public class Chamada {
     
     private int idchamada;
-    private int faltas;
+    private String faltas;
     private int idprofessor;
     private int iddisciplina;
+
+    public Chamada() {
+    }
+
+    public Chamada(String faltas, int idprofessor, int iddisciplina) {
+        this.faltas = faltas;
+        this.idprofessor = idprofessor;
+        this.iddisciplina = iddisciplina;
+    }
 
     /**
      * @return the idchamada
@@ -33,14 +42,14 @@ public class Chamada {
     /**
      * @return the faltas
      */
-    public int getFaltas() {
+    public String getFaltas() {
         return faltas;
     }
 
     /**
      * @param faltas the faltas to set
      */
-    public void setFaltas(int faltas) {
+    public void setFaltas(String faltas) {
         this.faltas = faltas;
     }
 

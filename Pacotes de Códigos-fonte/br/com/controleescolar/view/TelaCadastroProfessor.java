@@ -319,7 +319,7 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
        LoginController clogin = new LoginController();
        clogin.atualizaLogin(jTextFieldUsuario.getText(), jPasswordFieldSenha.getText(),
                cprofessor.insertIdProfessor(jFormattedTextFieldMatricula.getText()));
-       limparCampos();;
+       limparCampos();
        
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
