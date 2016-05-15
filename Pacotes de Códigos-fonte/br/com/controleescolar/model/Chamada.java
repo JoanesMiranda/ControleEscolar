@@ -13,14 +13,16 @@ public class Chamada {
     
     private int idchamada;
     private String faltas;
+    private String data;
     private int idprofessor;
     private int iddisciplina;
 
     public Chamada() {
     }
 
-    public Chamada(String faltas, int idprofessor, int iddisciplina) {
+    public Chamada(String faltas,String data, int idprofessor, int iddisciplina) {
         this.faltas = faltas;
+        this.data = data;
         this.idprofessor = idprofessor;
         this.iddisciplina = iddisciplina;
     }
@@ -79,6 +81,20 @@ public class Chamada {
      */
     public void setIddisciplina(int iddisciplina) {
         this.iddisciplina = iddisciplina;
+    }
+
+    /**
+     * @return the data
+     */
+    public String getData() {
+        return data;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data) {
+        this.data = data;
     }
     
     

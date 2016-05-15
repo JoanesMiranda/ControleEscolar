@@ -11,6 +11,9 @@ import br.com.controleescolar.controller.DisciplinaController;
 import br.com.controleescolar.controller.ProfessorController;
 import br.com.controleescolar.controller.TurmaController;
 import br.com.controleescolar.model.Chamada;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 //import javax.swing.table.DefaultTableModel;
 
@@ -77,7 +80,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooserData = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -187,7 +190,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldNomeProfessor)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooserData, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSelecionarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxDisciplina, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -241,7 +244,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jDateChooserData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -332,14 +335,20 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         DisciplinaController disciplina = new DisciplinaController();
-        
-        int valores = jTableNomesDosAlunos.getSelectedRow();
        
-        Chamada chamada = new Chamada((String) jTableNomesDosAlunos.getModel().getValueAt(valores, 1),
+        java.util.Date pega = jDateChooserData.getDate();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String data = formato.format(pega);
+        
+        int valores = jTableNomesDosAlunos.getRowCount();
+        
+        for(int i = 0; i < valores; i++){
+            Chamada chamada = new Chamada((String) jTableNomesDosAlunos.getModel().getValueAt(i, 1), data,
                 disciplina.pesquisaIdProfessor(jTextFieldNomeProfessor.getText()),
                 disciplina.insertIdDisciplina((String) jComboBoxDisciplina.getSelectedItem()) );
         ChamadaController chamadaC = new ChamadaController();
         chamadaC.salvar(chamada);
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
@@ -384,7 +393,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBoxDisciplina;
     private javax.swing.JComboBox<String> jComboBoxSelecionarTurma;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooserData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -6,8 +6,8 @@
 package br.com.controleescolar.controller;
 
 import br.com.controleescolar.model.Chamada;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -19,11 +19,12 @@ public class ChamadaController extends Conexao{
     public void salvar(Chamada chamada){
         abrirBanco();
             try {
-                PreparedStatement stm = conn.prepareStatement("INSERT INTO chamada(faltas,FK_professor,FK_disciplina)"
-                        + "VALUES(?,?,?)");
+                PreparedStatement stm = conn.prepareStatement("INSERT INTO chamada(faltas,data,FK_professor,FK_disciplina)"
+                        + "VALUES(?,?,?,?)");
                 stm.setString(1, chamada.getFaltas());
-                stm.setInt(2, chamada.getIdprofessor());
-                stm.setInt(3, chamada.getIddisciplina());
+                stm.setString(2, chamada.getData());
+                stm.setInt(3, chamada.getIdprofessor());
+                stm.setInt(4, chamada.getIddisciplina());
                 stm.execute();
                 //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela chamada");
             } catch (SQLException ex) {
@@ -68,9 +69,5 @@ public class ChamadaController extends Conexao{
             }
         fecharBanco();
     }
-    
-    
-    
-    
-    
+     
 }
