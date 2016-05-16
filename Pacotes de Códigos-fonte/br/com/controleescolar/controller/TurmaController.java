@@ -45,7 +45,7 @@ public class TurmaController extends Conexao{
                 nome = rs.getString("nome");
                 //JOptionPane.showMessageDialog(null,"pesquisa realizada com sucesso");
            } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null," não cadastrado na base de dados"+ex.getMessage());
+               JOptionPane.showMessageDialog(null,"Turma não Cadastrada no Sistema");
            }
         fecharBanco();
         return nome;
@@ -65,7 +65,7 @@ public class TurmaController extends Conexao{
         fecharBanco();
     }
   
-    public void atualizarTurma(String codigo,String nome){
+    public void atualizarTurma(String nome,String codigo){
         abrirBanco();
             try {
                  PreparedStatement  stm = conn.prepareStatement("UPDATE turma SET nome = ? WHERE codigo = ?");
@@ -91,7 +91,7 @@ public class TurmaController extends Conexao{
             }while(rs.next());
                 //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
         } catch (SQLException ex) {
-                //JOptionPane.showMessageDialog(null,"Nenhuma turma Cadastrada!  "+ex.getMessage());
+                JOptionPane.showMessageDialog(null,"O Sistema não Possui Turmas Cadastradas!");
         }    
         return array;
     }  

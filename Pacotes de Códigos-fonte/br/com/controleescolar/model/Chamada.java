@@ -16,15 +16,17 @@ public class Chamada {
     private String data;
     private int idprofessor;
     private int iddisciplina;
+    private int idaluno;
 
     public Chamada() {
     }
 
-    public Chamada(String faltas,String data, int idprofessor, int iddisciplina) {
+    public Chamada(String faltas,String data, int idprofessor, int iddisciplina,int idaluno) {
         this.faltas = faltas;
         this.data = data;
         this.idprofessor = idprofessor;
         this.iddisciplina = iddisciplina;
+        this.idaluno = idaluno;
     }
 
     /**
@@ -95,6 +97,20 @@ public class Chamada {
      */
     public void setData(String data) {
         this.data = data;
+    }
+
+    /**
+     * @return the idaluno
+     */
+    public int getIdaluno() {
+        return idaluno;
+    }
+
+    /**
+     * @param idaluno the idaluno to set
+     */
+    public void setIdaluno(int idaluno) {
+        this.idaluno = idaluno;
     }
     
     

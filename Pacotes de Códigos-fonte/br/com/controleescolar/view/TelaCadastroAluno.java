@@ -11,7 +11,7 @@ import br.com.controleescolar.controller.DisciplinaController;
 import br.com.controleescolar.controller.TurmaController;
 import br.com.controleescolar.controller.TurmaTemAlunoController;
 import br.com.controleescolar.model.Aluno;
-import br.com.controleescolar.model.AlunoTemDisciplina;
+
 
 /**
  *
@@ -280,19 +280,24 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
         //apaga as informações do aluno da tabela aluno
         AlunoControleler caluno = new AlunoControleler();
         caluno.excluirAluno(jTextMatricula.getText());
+        limpaCampos();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         //alualiza as informaçõees do aluno na tabela aluno
         AlunoControleler caluno = new AlunoControleler();
         caluno.atualizaAluno(jTextNome.getText(),Codcartaoarduino.getText(),jTextMatricula.getText());
+        limpaCampos();
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         //pesquisa as informações do aluno no BD e retorma para os campos da telaAluno
         AlunoControleler caluno = new AlunoControleler();
-        jTextNome.setText((String) caluno.pesquisaAluno(jTextMatricula.getText()).get(0));
-        Codcartaoarduino.setText((String) caluno.pesquisaAluno(jTextMatricula.getText()).get(1));
+        
+        if(!caluno.pesquisaAluno(jTextMatricula.getText()).isEmpty()){
+            jTextNome.setText((String) caluno.pesquisaAluno(jTextMatricula.getText()).get(0));
+            Codcartaoarduino.setText((String) caluno.pesquisaAluno(jTextMatricula.getText()).get(1));
+        }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void CodcartaoarduinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodcartaoarduinoActionPerformed

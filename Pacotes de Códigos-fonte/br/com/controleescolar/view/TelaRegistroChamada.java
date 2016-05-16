@@ -11,11 +11,8 @@ import br.com.controleescolar.controller.DisciplinaController;
 import br.com.controleescolar.controller.ProfessorController;
 import br.com.controleescolar.controller.TurmaController;
 import br.com.controleescolar.model.Chamada;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -293,14 +290,14 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxSelecionarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelecionarTurmaActionPerformed
-         //aqui
         DefaultTableModel NomesDosAlunos = (DefaultTableModel) jTableNomesDosAlunos.getModel();
      
         AlunoControleler alunoC = new AlunoControleler();
         ChamadaController chamadaC = new ChamadaController();
         
-        alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem());
-        
+        /* Pesquisa no BD por alunos apartir do nome da turma caso encontre
+            preenche a tabela com os nomes dos alunos e as faltas dos mesmos salvas no BD  
+        */
         if(!alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).isEmpty()){
             NomesDosAlunos.getDataVector().removeAllElements();
            for(int i = 0; i < alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).size(); i++){
@@ -334,21 +331,38 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableNomesDosAlunosKeyPressed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        DisciplinaController disciplina = new DisciplinaController();
+       DisciplinaController disciplina = new DisciplinaController();
+       ChamadaController chamadaC = new ChamadaController();
+       AlunoControleler alunoC = new AlunoControleler();
        
+       //Codigo para pegar apenas data no formatada
         java.util.Date pega = jDateChooserData.getDate();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String data = formato.format(pega);
         
-        int valores = jTableNomesDosAlunos.getRowCount();
-        
-        for(int i = 0; i < valores; i++){
-            Chamada chamada = new Chamada((String) jTableNomesDosAlunos.getModel().getValueAt(i, 1), data,
-                disciplina.pesquisaIdProfessor(jTextFieldNomeProfessor.getText()),
-                disciplina.insertIdDisciplina((String) jComboBoxDisciplina.getSelectedItem()) );
-        ChamadaController chamadaC = new ChamadaController();
-        chamadaC.salvar(chamada);
-        }
+         
+        /*Pesquisa no BD por faltas, se tiver atualiza as faltas de acordo com o nome do alunos
+        se não tiver salva as novas presenças ou faltas.
+        */
+        if(chamadaC.quatFaltas() == true){
+           int valores = jTableNomesDosAlunos.getRowCount();
+           for(int i = 0; i < valores; i++){
+                Chamada chamada = new Chamada((String) jTableNomesDosAlunos.getModel().getValueAt(i, 1), data,
+                    disciplina.pesquisaIdProfessor(jTextFieldNomeProfessor.getText()),
+                    disciplina.insertIdDisciplina((String) jComboBoxDisciplina.getSelectedItem()),alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0)) );
+
+                chamadaC.atualizarChamada(chamada, (String) alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i));
+            }
+        }else{
+            int valores = jTableNomesDosAlunos.getRowCount();
+           for(int i = 0; i < valores; i++){
+                Chamada chamada = new Chamada((String) jTableNomesDosAlunos.getModel().getValueAt(i, 1), data,
+                    disciplina.pesquisaIdProfessor(jTextFieldNomeProfessor.getText()),
+                    disciplina.insertIdDisciplina((String) jComboBoxDisciplina.getSelectedItem()),alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0)) );
+
+                chamadaC.salvar(chamada);
+            }   
+        }           
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**

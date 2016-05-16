@@ -55,9 +55,9 @@ public class AlunoControleler extends Conexao{
                 stm.setString(2, codcartaoarduino);
                 stm.setString(3, matricula);
                 stm.execute();
-                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela aluno");
+                JOptionPane.showMessageDialog(null,"Dados Atualizados com Sucesso");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"Dados atualizados"+ex.getMessage());
+                JOptionPane.showMessageDialog(null,"Erro ao atualizar Dados"+ex.getMessage());
             }
         fecharBanco(); 
     }
@@ -71,7 +71,7 @@ public class AlunoControleler extends Conexao{
             arrayAluno.add(rs.getString("nome"));
             arrayAluno.add(rs.getString("codcartaoarduino"));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso em aluno"+ex.getMessage());
+            JOptionPane.showMessageDialog(null,"O Sistema não Possui Alunos Cadastrado com o Codigo Digitado");
         }
         fecharBanco();
         return arrayAluno;
@@ -109,5 +109,25 @@ public class AlunoControleler extends Conexao{
         }
         fecharBanco();
         return arrayAluno;
-    }     
+    }   
+    
+    public int pesquisaIdAluno(String nome){
+        int idaluno = 0;
+        abrirBanco();
+            try{
+                PreparedStatement stm = conn.prepareStatement("SELECT idAluno FROM aluno WHERE nome =?");
+                stm.setString(1, nome);
+                ResultSet rs = stm.executeQuery();
+                rs.next();
+                idaluno = rs.getInt("idAluno");
+                JOptionPane.showMessageDialog(null,"id dao aluno recuperado com sucesso");
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+            }    
+        fecharBanco();
+        return idaluno;
+    }    
+    
+    
+    
 }

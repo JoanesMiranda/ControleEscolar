@@ -46,7 +46,7 @@ public class DisciplinaController extends Conexao{
             }while(rs.next());
                 //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
         } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"Nenhuma Disciplina Cadastrada!  "+ex.getMessage());
+                JOptionPane.showMessageDialog(null,"O Sistem não possui Disciplinas Cadastradas");
         }    
         return array;
     }  
@@ -104,7 +104,7 @@ public class DisciplinaController extends Conexao{
             }while(rs.next());
                 //JOptionPane.showMessageDialog(rootPane,"sucesso ao pegar o valor do banco!");
         } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"Nenhuma Disciplina Cadastrada!  "+ex.getMessage());
+                JOptionPane.showMessageDialog(null,"Nenhuma Disciplina Cadastrada!  ");
         }    
         return array;
     }  
