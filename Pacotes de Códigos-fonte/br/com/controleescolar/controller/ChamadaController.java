@@ -72,12 +72,13 @@ public class ChamadaController extends Conexao{
             }
         fecharBanco();
     }
-     
-    public boolean quatFaltas(){
+     //Preciso modificar esse codigo para pesquisar e se achar algum valor atualizar e se o valor não existir salva-lo
+    public boolean quatFaltas(String nome){
         String faltas = null;
         abrirBanco();
             try {
-                execultaSQL("SELECT * FROM chamada");
+                execultaSQL("SELECT * FROM chamada WHERE FK_Professor = "
+                        + "(SELECT idprofessor FROM professor WHERE nome = '"+nome+"')");
                 rs.first();
                 faltas = rs.getString("faltas");
                 //JOptionPane.showMessageDialog(null,"sucesso ao pegar o valor do banco!");

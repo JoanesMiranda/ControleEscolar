@@ -344,7 +344,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         /*Pesquisa no BD por faltas, se tiver atualiza as faltas de acordo com o nome do alunos
         se não tiver salva as novas presenças ou faltas.
         */
-        if(chamadaC.quatFaltas() == true){
+        if(chamadaC.quatFaltas(jTextFieldNomeProfessor.getText()) == true){
            int valores = jTableNomesDosAlunos.getRowCount();
            for(int i = 0; i < valores; i++){
                 Chamada chamada = new Chamada((String) jTableNomesDosAlunos.getModel().getValueAt(i, 1), data,
