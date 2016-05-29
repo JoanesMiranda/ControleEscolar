@@ -13,6 +13,21 @@ public class Sessao {
     
     static private String usuario;
     static  private String senha;
+    static private String linha;
+
+    /**
+     * @return the linha
+     */
+    public static String getLinha() {
+        return linha;
+    }
+
+    /**
+     * @param aLinha the linha to set
+     */
+    public static void setLinha(String aLinha) {
+        linha = aLinha;
+    }
 
     public Sessao() {
     }
@@ -21,6 +36,11 @@ public class Sessao {
         usuario = "";
         senha = "";
     }
+    public static void closeAduino(){
+        linha = "";
+    }
+    
+    
     public Sessao(String usuario, String senha) {
         this.usuario = usuario;
         this.senha = senha;

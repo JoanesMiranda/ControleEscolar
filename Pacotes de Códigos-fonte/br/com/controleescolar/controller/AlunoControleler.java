@@ -120,7 +120,7 @@ public class AlunoControleler extends Conexao{
                 ResultSet rs = stm.executeQuery();
                 rs.next();
                 idaluno = rs.getInt("idAluno");
-                JOptionPane.showMessageDialog(null,"id dao aluno recuperado com sucesso");
+                //JOptionPane.showMessageDialog(null,"id dao aluno recuperado com sucesso");
             }catch(SQLException ex){
                 JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
             }    

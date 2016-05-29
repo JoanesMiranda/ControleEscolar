@@ -87,7 +87,7 @@
                           <Component id="jScrollPane1" min="-2" pref="349" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton2" linkSize="5" min="-2" pref="117" max="-2" attributes="0"/>
+                              <Component id="jButtonAtualizar" linkSize="5" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="jButton3" linkSize="6" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="jSeparator2" linkSize="5" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="jSeparator3" linkSize="6" min="-2" pref="50" max="-2" attributes="0"/>
@@ -144,7 +144,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonAtualizar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -222,10 +222,13 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jButtonAtualizar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Editar"/>
+            <Property name="text" type="java.lang.String" value="Atualizar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAtualizarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>

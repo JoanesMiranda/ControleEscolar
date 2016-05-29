@@ -29,9 +29,9 @@ public class ChamadaController extends Conexao{
                 stm.setInt(4, chamada.getIddisciplina());
                 stm.setInt(5, chamada.getIdprofessor());
                 stm.execute();
-                JOptionPane.showMessageDialog(null,"Dados Salvo com Sucesso");
+               // JOptionPane.showMessageDialog(null,"Dados Salvo com Sucesso");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"erro ao salvar em chamada"+ex.getMessage());
+                //JOptionPane.showMessageDialog(null,"erro ao salvar em chamada"+ex.getMessage());
             }
         fecharBanco();
     }
@@ -46,7 +46,7 @@ public class ChamadaController extends Conexao{
                         + " (SELECT idAluno FROM aluno WHERE nome = '"+nomeAluno+"'))");
                 rs.first();
                 do{
-                    array = (rs.getString("faltas"));
+                    array = rs.getString("faltas");
                 }while(rs.next());
                     //JOptionPane.showMessageDialog(null,"sucesso ao pegar o valor do banco!");
             } catch (SQLException ex) {
@@ -66,30 +66,29 @@ public class ChamadaController extends Conexao{
                 stm.setString(2, nome);
                 
                 stm.execute();
-                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela chamada");
+                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela chamada");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"erro ao salvar em chamada"+ex.getMessage());
+                //JOptionPane.showMessageDialog(null,"erro ao salvar em chamada"+ex.getMessage());
             }
         fecharBanco();
     }
-     //Preciso modificar esse codigo para pesquisar e se achar algum valor atualizar e se o valor não existir salva-lo
-    public boolean quatFaltas(String nome){
-        String faltas = null;
+    
+    public ArrayList retornaFkAluno(String nome){
+        ArrayList<Integer> array = new ArrayList();
         abrirBanco();
             try {
-                execultaSQL("SELECT * FROM chamada WHERE FK_Professor = "
+                execultaSQL("SELECT FK_Aluno FROM chamada WHERE FK_Professor = "
                         + "(SELECT idprofessor FROM professor WHERE nome = '"+nome+"')");
                 rs.first();
-                faltas = rs.getString("faltas");
+                do{
+                    array.add(rs.getInt("FK_Aluno"));
+                }
+                while(rs.next());
                 //JOptionPane.showMessageDialog(null,"sucesso ao pegar o valor do banco!");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"erro ao selecionar as falta!  "+ex.getMessage());
+                JOptionPane.showMessageDialog(null,"erro ao retornar fk_aluno!  "+ex.getMessage());
             } 
         fecharBanco();
-        if(faltas != null){
-            return true;
-        }else{
-            return false;
-        } 
+        return array;
     }
 }

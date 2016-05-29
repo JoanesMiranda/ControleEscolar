@@ -250,7 +250,7 @@ public class TelaCadastroDisciplina extends javax.swing.JFrame {
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         DisciplinaController disciplinaC = new DisciplinaController();
-        //jComboBoxNomeProfessor.removeAllItems();
+        jComboBoxNomeProfessor.removeAllItems();
         if(!disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).isEmpty()){
             JTextFieldNomeDisciplina.setText((String) disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).get(0));
             jComboBoxNomeProfessor.addItem(disciplinaC.pesquisaNomeProfessor((int) (disciplinaC.pesquisaDisciplina(JTextFieldCodigoDisciplina.getText()).get(1))));   
