@@ -58,7 +58,7 @@ void loop() {
   }
 
   // Abre o arquivo arquivo.txt do cartao SD
-  File dataFile = SD.open("arquivo.txt", FILE_WRITE);
+  File dataFile = SD.open("arduino.txt", FILE_WRITE);
   // Grava os dados no arquivo
   
   if (dataFile)

@@ -11,7 +11,11 @@ import br.com.controleescolar.controller.DisciplinaController;
 import br.com.controleescolar.controller.ProfessorController;
 import br.com.controleescolar.controller.TurmaController;
 import br.com.controleescolar.model.Chamada;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,7 +40,6 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         }
         
         //Pesquisa todas as turmas salvas no BD e insere no "jComboBoxSelecionarTurma".
-        //está funcionando normalmente
         TurmaController turmaC = new TurmaController();
         jComboBoxSelecionarTurma.removeAllItems();
         
@@ -75,7 +78,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         jComboBoxSelecionarTurma = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButtonAtualizar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jDateChooserData = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
@@ -128,7 +131,12 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/logouepbmenor.png"))); // NOI18N
 
-        jButton2.setText("Editar");
+        jButtonAtualizar.setText("Atualizar");
+        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtualizarActionPerformed(evt);
+            }
+        });
 
         jButton3.setForeground(new java.awt.Color(255, 51, 51));
         jButton3.setText("Cancelar");
@@ -209,7 +217,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,7 +229,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                         .addGap(125, 125, 125))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jSeparator2});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAtualizar, jSeparator2});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton3, jSeparator3});
 
@@ -261,7 +269,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonAtualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
@@ -294,6 +302,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
      
         AlunoControleler alunoC = new AlunoControleler();
         ChamadaController chamadaC = new ChamadaController();
+        Sessao s = new Sessao();
         
         /* Pesquisa no BD por alunos apartir do nome da turma caso encontre
             preenche a tabela com os nomes dos alunos e as faltas dos mesmos salvas no BD  
@@ -302,11 +311,13 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
             NomesDosAlunos.getDataVector().removeAllElements();
            for(int i = 0; i < alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).size(); i++){
                Object[] nomes = {alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i),
-               chamadaC.pesquisaFaltas((String) alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i))};
+               s.getLinha()};
                NomesDosAlunos.addRow(nomes);
            }
-        }  
-   
+        } 
+        s.closeAduino();
+        
+       // chamadaC.pesquisaFaltas((String) alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i))};
     }//GEN-LAST:event_jComboBoxSelecionarTurmaActionPerformed
 
     private void jTextFieldNomeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeProfessorActionPerformed
@@ -340,30 +351,82 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String data = formato.format(pega);
         
-         
-        /*Pesquisa no BD por faltas, se tiver atualiza as faltas de acordo com o nome do alunos
-        se não tiver salva as novas presenças ou faltas.
-        */
-        if(chamadaC.quatFaltas(jTextFieldNomeProfessor.getText()) == true){
-           int valores = jTableNomesDosAlunos.getRowCount();
-           for(int i = 0; i < valores; i++){
+       int valores = jTableNomesDosAlunos.getRowCount();
+  
+        if(chamadaC.retornaFkAluno(jTextFieldNomeProfessor.getText()).isEmpty()){
+            for(int i = 0; i < valores; i++){
                 Chamada chamada = new Chamada((String) jTableNomesDosAlunos.getModel().getValueAt(i, 1), data,
-                    disciplina.pesquisaIdProfessor(jTextFieldNomeProfessor.getText()),
-                    disciplina.insertIdDisciplina((String) jComboBoxDisciplina.getSelectedItem()),alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0)) );
-
-                chamadaC.atualizarChamada(chamada, (String) alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i));
+                disciplina.pesquisaIdProfessor(jTextFieldNomeProfessor.getText()),
+                disciplina.insertIdDisciplina((String) jComboBoxDisciplina.getSelectedItem()),alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0)) );
+                chamadaC.salvar(chamada);
             }
         }else{
-            int valores = jTableNomesDosAlunos.getRowCount();
-           for(int i = 0; i < valores; i++){
+            for(int i  = 0; i < valores; i++){
                 Chamada chamada = new Chamada((String) jTableNomesDosAlunos.getModel().getValueAt(i, 1), data,
-                    disciplina.pesquisaIdProfessor(jTextFieldNomeProfessor.getText()),
-                    disciplina.insertIdDisciplina((String) jComboBoxDisciplina.getSelectedItem()),alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0)) );
+                disciplina.pesquisaIdProfessor(jTextFieldNomeProfessor.getText()),
+                disciplina.insertIdDisciplina((String) jComboBoxDisciplina.getSelectedItem()),alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0)));
 
-                chamadaC.salvar(chamada);
+                int idaluno = alunoC.pesquisaIdAluno((String)jTableNomesDosAlunos.getModel().getValueAt(i, 0));
+                int fkAluno = (int) chamadaC.retornaFkAluno(jTextFieldNomeProfessor.getText()).get(i);
+                
+                if(fkAluno == idaluno){
+                   chamadaC.atualizarChamada(chamada, (String) alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i));
+                }   
             }   
-        }           
+            //falta terminar
+             /*
+            for(int j = 0; j < chamadaC.retornaFkAluno(jTextFieldNomeProfessor.getText()).size(); j++){
+                
+                for(int i =0; i < valores; i++){
+                Chamada chamada = new Chamada((String) jTableNomesDosAlunos.getModel().getValueAt(j, 1), data,
+                disciplina.pesquisaIdProfessor(jTextFieldNomeProfessor.getText()),
+                disciplina.insertIdDisciplina((String) jComboBoxDisciplina.getSelectedItem()),alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(j, 0)));
+                    int idaluno = alunoC.pesquisaIdAluno((String)jTableNomesDosAlunos.getModel().getValueAt(i, 0));
+                    int fkAluno = (int) chamadaC.retornaFkAluno(jTextFieldNomeProfessor.getText()).get(j);
+                    if(idaluno == fkAluno){
+                        chamadaC.atualizarChamada(chamada, (String) alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i));
+                    }else{
+                        chamadaC.salvar(chamada); 
+                    }
+                }
+            }
+            */
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
+       //Recebe todos os valores dos cartões e passar para os campos de falta dos alunos
+         Scanner ler = new Scanner(System.in);
+         
+    System.out.printf("Informe o nome de arquivo texto:\n");
+    String nome = ler.nextLine();
+
+    System.out.printf("\nConteúdo do arquivo texto:\n");
+    try {
+      FileReader arq = new FileReader(nome);
+      BufferedReader lerArq = new BufferedReader(arq);
+
+      String linha = lerArq.readLine(); // lê a primeira linha
+// a variável "linha" recebe o valor "null" quando o processo
+// de repetição atingir o final do arquivo texto
+      while (linha != null) {
+        System.out.printf("%s\n", linha);
+
+        linha = lerArq.readLine(); // lê da segunda até a última linha
+        
+        Sessao s = new Sessao();
+        s.setLinha(linha);
+      }
+      arq.close();
+    } catch (IOException e) {
+        System.err.printf("Erro na abertura do arquivo: %s.\n",
+          e.getMessage());
+    }
+
+    System.out.println();
+        
+     
+    }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,8 +465,8 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBoxDisciplina;
     private javax.swing.JComboBox<String> jComboBoxSelecionarTurma;

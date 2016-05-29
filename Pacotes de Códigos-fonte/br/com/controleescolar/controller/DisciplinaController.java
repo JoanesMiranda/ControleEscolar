@@ -59,7 +59,7 @@ public class DisciplinaController extends Conexao{
             rs.first();
             idProfessor = rs.getInt("idprofessor");
          } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"idprofessor não recuperado!  "+ex.getMessage());
+            JOptionPane.showMessageDialog(null,"idprofessor não recuperado!  "+ex.getMessage());
         } 
         fecharBanco();
         return idProfessor;
