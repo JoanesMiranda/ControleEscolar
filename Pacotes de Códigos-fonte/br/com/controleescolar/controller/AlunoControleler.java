@@ -94,6 +94,7 @@ public class AlunoControleler extends Conexao{
     
     public ArrayList pesquisaTodosAlunos(String nomeTurma){
         ArrayList arrayAluno = new ArrayList();
+        //String arrayAluno = null;
         abrirBanco();
         try {
             execultaSQL("SELECT nome FROM aluno WHERE idAluno IN"
@@ -127,7 +128,43 @@ public class AlunoControleler extends Conexao{
         fecharBanco();
         return idaluno;
     }    
+     public int pesquisaIdAlunoArduino(String codArduino){
+        int idaluno = 0;
+        abrirBanco();
+            try{
+                PreparedStatement stm = conn.prepareStatement("SELECT idAluno FROM aluno WHERE codcartaoarduino = ?");
+                stm.setString(1, codArduino);
+                ResultSet rs = stm.executeQuery();
+                rs.next();
+                idaluno = rs.getInt("idAluno");
+                //JOptionPane.showMessageDialog(null,"id dao aluno recuperado com sucesso");
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+            }    
+        fecharBanco();
+        return idaluno;
+    }    
     
-    
+     public String pesquisaAlunos(String nomeTurma){
+        String arrayAluno = null;
+        abrirBanco();
+        try {
+            execultaSQL("SELECT nome FROM aluno WHERE idAluno IN"
+                    + "(SELECT FK_Aluno FROM turma_has_aluno WHERE FK_Turma = "
+                    + "(SELECT idTurma FROM turma WHERE nome = '"+nomeTurma+"'))");
+            rs.first();
+            do{
+                arrayAluno = rs.getString("nome");
+            }while(rs.next());
+            //JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso em todos os alunos");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"erro na pesquisa de todos os alunos"+ex.getMessage());
+        }
+        fecharBanco();
+        return arrayAluno;
+    }   
+     
+     
+     
     
 }

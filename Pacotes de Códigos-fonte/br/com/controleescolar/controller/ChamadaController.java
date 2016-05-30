@@ -36,9 +36,8 @@ public class ChamadaController extends Conexao{
         fecharBanco();
     }
     
-    public String pesquisaFaltas(String nomeAluno){
-        //ArrayList array = new ArrayList();
-        String array = null;
+    public ArrayList pesquisaFaltas(String nomeAluno){
+        ArrayList array = new ArrayList();
         abrirBanco();
             try {
                 execultaSQL("SELECT faltas FROM chamada WHERE FK_Disciplina ="
@@ -46,7 +45,7 @@ public class ChamadaController extends Conexao{
                         + " (SELECT idAluno FROM aluno WHERE nome = '"+nomeAluno+"'))");
                 rs.first();
                 do{
-                    array = rs.getString("faltas");
+                    array.add(rs.getString("faltas"));
                 }while(rs.next());
                     //JOptionPane.showMessageDialog(null,"sucesso ao pegar o valor do banco!");
             } catch (SQLException ex) {

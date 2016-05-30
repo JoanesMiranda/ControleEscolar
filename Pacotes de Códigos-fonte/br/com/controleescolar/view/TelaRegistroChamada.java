@@ -15,7 +15,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -302,22 +301,24 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
      
         AlunoControleler alunoC = new AlunoControleler();
         ChamadaController chamadaC = new ChamadaController();
-        Sessao s = new Sessao();
-        
+   
         /* Pesquisa no BD por alunos apartir do nome da turma caso encontre
             preenche a tabela com os nomes dos alunos e as faltas dos mesmos salvas no BD  
         */
         if(!alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).isEmpty()){
             NomesDosAlunos.getDataVector().removeAllElements();
            for(int i = 0; i < alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).size(); i++){
-               Object[] nomes = {alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i),
-               s.getLinha()};
-               NomesDosAlunos.addRow(nomes);
+                if(chamadaC.pesquisaFaltas((String) alunoC.pesquisaAlunos((String) jComboBoxSelecionarTurma.getSelectedItem())).isEmpty()){
+                    Object[] nomes = {alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i),
+                    chamadaC.pesquisaFaltas((String) alunoC.pesquisaAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()))};
+                    NomesDosAlunos.addRow(nomes);
+                }else{
+                    Object[] nomes = {alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i),
+                    chamadaC.pesquisaFaltas((String) alunoC.pesquisaAlunos((String) jComboBoxSelecionarTurma.getSelectedItem())).get(i)};
+                    NomesDosAlunos.addRow(nomes);
+                } 
            }
         } 
-        s.closeAduino();
-        
-       // chamadaC.pesquisaFaltas((String) alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i))};
     }//GEN-LAST:event_jComboBoxSelecionarTurmaActionPerformed
 
     private void jTextFieldNomeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeProfessorActionPerformed
@@ -395,39 +396,46 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-       //Recebe todos os valores dos cartões e passar para os campos de falta dos alunos
-         Scanner ler = new Scanner(System.in);
-         
-    System.out.printf("Informe o nome de arquivo texto:\n");
-    String nome = ler.nextLine();
+        //Recebe todos os valores dos cartões e passar para os campos de falta dos alunos
+     String nome = "c://cliente.txt";
 
-    System.out.printf("\nConteúdo do arquivo texto:\n");
-    try {
-      FileReader arq = new FileReader(nome);
-      BufferedReader lerArq = new BufferedReader(arq);
+     System.out.printf("\nConteúdo do arquivo texto:\n");
+     try {
+         FileReader arq = new FileReader(nome);
+         BufferedReader lerArq = new BufferedReader(arq);
 
-      String linha = lerArq.readLine(); // lê a primeira linha
-// a variável "linha" recebe o valor "null" quando o processo
-// de repetição atingir o final do arquivo texto
-      while (linha != null) {
-        System.out.printf("%s\n", linha);
+         String linha = lerArq.readLine(); // lê a primeira linha
+         // a variável "linha" recebe o valor "null" quando o processo
+         // de repetição atingir o final do arquivo texto
+         while (linha != null) {
+             //System.out.printf("%s\n", linha);
+             Sessao s = new Sessao();
+             s.setLinha(linha);
 
-        linha = lerArq.readLine(); // lê da segunda até a última linha
-        
+             linha = lerArq.readLine(); // lê da segunda até a última linha
+         }
+         arq.close();
+     } catch (IOException e) {
+         System.err.printf("Erro na abertura do arquivo: %s.\n",
+           e.getMessage());
+     }
+        System.out.println();
+        int valores = jTableNomesDosAlunos.getRowCount();
         Sessao s = new Sessao();
-        s.setLinha(linha);
-      }
-      arq.close();
-    } catch (IOException e) {
-        System.err.printf("Erro na abertura do arquivo: %s.\n",
-          e.getMessage());
-    }
+        AlunoControleler alunoC = new AlunoControleler();
 
-    System.out.println();
-        
+        DefaultTableModel NomesDosAlunos = (DefaultTableModel) jTableNomesDosAlunos.getModel();
+        for(int i = 0; i < valores; i++){
+            int idAlunoArduino = alunoC.pesquisaIdAlunoArduino(s.getLinha());
+            if(idAlunoArduino == alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0))){
+                NomesDosAlunos.removeRow(4);
+                NomesDosAlunos.insertRow(4,new Object[]{alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(4),"P"} );
+            }
+        }
+        s.closeAduino();
      
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
-
+          
     /**
      * @param args the command line arguments
      */
