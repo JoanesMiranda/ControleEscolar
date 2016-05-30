@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listaPresenca" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fea328e5-9f12-4c67-ae60-ff4fa03e652e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     aluno.`idAluno` AS aluno_idAluno,
+     aluno.`nome` AS aluno_nome,
+     aluno.`matricula` AS aluno_matricula,
+     aluno.`codcartaoarduino` AS aluno_codcartaoarduino,
+     chamada.`idChamada` AS chamada_idChamada,
+     chamada.`faltas` AS chamada_faltas,
+     chamada.`data` AS chamada_data,
+     chamada.`FK_Professor` AS chamada_FK_Professor,
+     chamada.`FK_Disciplina` AS chamada_FK_Disciplina,
+     chamada.`FK_Aluno` AS chamada_FK_Aluno,
+     professor.`idProfessor` AS professor_idProfessor,
+     professor.`nome` AS professor_nome,
+     professor.`matricula` AS professor_matricula,
+     turma.`idTurma` AS turma_idTurma,
+     turma.`nome` AS turma_nome,
+     turma.`codigo` AS turma_codigo,
+     turma_has_professor.`FK_Turma` AS turma_has_professor_FK_Turma,
+     turma_has_professor.`FK_Professor` AS turma_has_professor_FK_Professor
+FROM
+     `aluno` aluno INNER JOIN `chamada` chamada ON aluno.`idAluno` = chamada.`FK_Aluno`
+     INNER JOIN `professor` professor ON chamada.`FK_Professor` = professor.`idProfessor`
+     INNER JOIN `turma_has_professor` turma_has_professor ON professor.`idProfessor` = turma_has_professor.`FK_Professor`
+     INNER JOIN `turma` turma ON turma_has_professor.`FK_Turma` = turma.`idTurma`]]>
+	</queryString>
+	<field name="aluno_nome" class="java.lang.String"/>
+	<field name="aluno_matricula" class="java.lang.String"/>
+	<field name="aluno_codcartaoarduino" class="java.lang.String"/>
+	<field name="chamada_faltas" class="java.lang.String"/>
+	<field name="chamada_data" class="java.lang.String"/>
+	<field name="professor_nome" class="java.lang.String"/>
+	<field name="professor_matricula" class="java.lang.String"/>
+	<field name="turma_nome" class="java.lang.String"/>
+	<field name="turma_codigo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="190" y="27" width="174" height="25" uuid="9f2579e7-cdd7-45b4-8701-63a22037ddae"/>
+				<textElement>
+					<font fontName="Bookman Old Style" size="20"/>
+				</textElement>
+				<text><![CDATA[Lista de Presença]]></text>
+			</staticText>
+			<image>
+				<reportElement x="506" y="0" width="49" height="64" uuid="447845a7-de51-461d-86f4-09a00ac61014"/>
+				<imageExpression><![CDATA["C:\\Users\\Joanes\\Documents\\NetBeansProjects\\ControleEscolar\\Pacotes de Códigos-fonte\\Imagens\\logouepbmenor.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="77" y="15" width="100" height="20" uuid="a47695dc-682a-41a3-9dbe-6867ef39b8ab"/>
+				<textFieldExpression><![CDATA[$F{turma_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="67" height="20" uuid="c9ce67d7-ea7c-4c08-930a-5dd0eb4db4a1"/>
+				<textElement>
+					<font fontName="Bookman Old Style" size="12"/>
+				</textElement>
+				<text><![CDATA[Turma: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="15" width="39" height="20" uuid="e43a9f7f-5ae5-441e-b71b-20da87e4823b"/>
+				<textElement>
+					<font fontName="Bookman Old Style" size="12"/>
+				</textElement>
+				<text><![CDATA[Data: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="282" y="15" width="100" height="20" uuid="215c340b-29b8-46c1-84d0-c8f1724dbfec"/>
+				<textFieldExpression><![CDATA[$F{chamada_data}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="67" height="20" uuid="d27e4e03-14c4-444d-96fb-6104e5cd8598"/>
+				<textElement>
+					<font fontName="Bookman Old Style" size="12"/>
+				</textElement>
+				<text><![CDATA[Professor: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="67" y="10" width="148" height="20" uuid="3fe02c8d-eb72-46ff-974a-73b0b3df21c3"/>
+				<textFieldExpression><![CDATA[$F{professor_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="215" y="10" width="67" height="20" uuid="4dae7b10-a8cc-4a6c-aae5-7e0087e62f16"/>
+				<textElement>
+					<font fontName="Bookman Old Style" size="12"/>
+				</textElement>
+				<text><![CDATA[Matricula: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="282" y="10" width="149" height="20" uuid="72a0a974-17b4-457d-999d-e0801c4f0099"/>
+				<textFieldExpression><![CDATA[$F{professor_matricula}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="41" width="42" height="20" uuid="2133c4dd-ee07-4b68-b2ad-52653b544f47"/>
+				<textElement>
+					<font fontName="Bookman Old Style" size="12"/>
+				</textElement>
+				<text><![CDATA[Aluno:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="42" y="41" width="159" height="20" uuid="f9f802f2-2fdb-45e6-a4a1-c0edf90fc928"/>
+				<textFieldExpression><![CDATA[$F{aluno_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="391" y="41" width="52" height="20" uuid="d1a7fac5-4081-46bc-842d-bbc8085f0ea7"/>
+				<text><![CDATA[Matricula]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="41" width="100" height="20" uuid="c95e513d-6ebd-48d9-9fe3-ece0a568a7bf"/>
+				<textFieldExpression><![CDATA[$F{aluno_matricula}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="215" y="41" width="67" height="20" uuid="ff3fd940-72b6-4871-a82b-8ed30af9112b"/>
+				<textElement>
+					<font fontName="Bookman Old Style" size="12"/>
+				</textElement>
+				<text><![CDATA[Faltas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="282" y="41" width="100" height="20" uuid="a4a608b3-1c8e-4cf0-b50f-63f5004423ad"/>
+				<textFieldExpression><![CDATA[$F{chamada_faltas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

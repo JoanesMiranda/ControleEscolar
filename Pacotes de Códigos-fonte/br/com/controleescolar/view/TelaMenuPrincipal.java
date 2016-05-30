@@ -71,6 +71,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         Relatorios.setToolTipText("Relatorios da Chamada Escolar");
         Relatorios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Relatorios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Relatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RelatoriosActionPerformed(evt);
+            }
+        });
 
         CadastraAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone-de-usuario-do-sexo-masculino_17-810120247.png"))); // NOI18N
         CadastraAluno.setText("Alunos");
@@ -224,6 +229,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Relatorios");
 
         jMenuItemRelatorioChamadas.setText("Relatorio de Chamada");
+        jMenuItemRelatorioChamadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRelatorioChamadasActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItemRelatorioChamadas);
 
         jMenuBar1.add(jMenu4);
@@ -320,6 +330,14 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     private void CadastraAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastraAlunoActionPerformed
         new TelaCadastroAluno().setVisible(true);
     }//GEN-LAST:event_CadastraAlunoActionPerformed
+
+    private void RelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelatoriosActionPerformed
+        new Relatorios().setVisible(true);
+    }//GEN-LAST:event_RelatoriosActionPerformed
+
+    private void jMenuItemRelatorioChamadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRelatorioChamadasActionPerformed
+        new Relatorios().setVisible(true);
+    }//GEN-LAST:event_jMenuItemRelatorioChamadasActionPerformed
 
     /**
      * @param args the command line arguments

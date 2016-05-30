@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -373,7 +374,8 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
                 if(fkAluno == idaluno){
                    chamadaC.atualizarChamada(chamada, (String) alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(i));
                 }   
-            }   
+            } 
+            JOptionPane.showMessageDialog(rootPane, "Dados Salvo com Sucesso");
             //falta terminar
              /*
             for(int j = 0; j < chamadaC.retornaFkAluno(jTextFieldNomeProfessor.getText()).size(); j++){

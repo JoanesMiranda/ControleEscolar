@@ -69,6 +69,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Relatorio de Chamada"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemRelatorioChamadasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -206,6 +209,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RelatoriosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="CadastraAluno">
           <Properties>
