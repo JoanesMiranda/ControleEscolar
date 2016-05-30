@@ -26,9 +26,9 @@ public class AlunoControleler extends Conexao{
                 stm.setString(2, aluno.getMatricula());
                 stm.setString(3, aluno.getCodcartaoarduino());
                 stm.execute();
-                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela aluno");
+                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela aluno");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"erro ao salvar em aluno"+ex.getMessage());
+                //JOptionPane.showMessageDialog(null,"erro ao salvar em aluno"+ex.getMessage());
             }
         fecharBanco();
     }    
@@ -41,7 +41,7 @@ public class AlunoControleler extends Conexao{
                 stm.execute();
                 JOptionPane.showMessageDialog(null,"Exluido com sucesso na tabela aluno");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"erro ao excuir o aluno"+ex.getMessage());
+                //JOptionPane.showMessageDialog(null,"erro ao excuir o aluno"+ex.getMessage());
             }
         fecharBanco();   
     }    
@@ -57,7 +57,7 @@ public class AlunoControleler extends Conexao{
                 stm.execute();
                 JOptionPane.showMessageDialog(null,"Dados Atualizados com Sucesso");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"Erro ao atualizar Dados"+ex.getMessage());
+                //JOptionPane.showMessageDialog(null,"Erro ao atualizar Dados"+ex.getMessage());
             }
         fecharBanco(); 
     }
@@ -86,7 +86,7 @@ public class AlunoControleler extends Conexao{
                 rs.next();
                 idaluno = rs.getInt("idAluno");
             }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+               // JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
             }    
         fecharBanco();
         return idaluno;
@@ -106,7 +106,7 @@ public class AlunoControleler extends Conexao{
             }while(rs.next());
             //JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso em todos os alunos");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"erro na pesquisa de todos os alunos"+ex.getMessage());
+            //JOptionPane.showMessageDialog(null,"erro na pesquisa de todos os alunos"+ex.getMessage());
         }
         fecharBanco();
         return arrayAluno;
@@ -123,7 +123,7 @@ public class AlunoControleler extends Conexao{
                 idaluno = rs.getInt("idAluno");
                 //JOptionPane.showMessageDialog(null,"id dao aluno recuperado com sucesso");
             }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+               // JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
             }    
         fecharBanco();
         return idaluno;
@@ -139,7 +139,7 @@ public class AlunoControleler extends Conexao{
                 idaluno = rs.getInt("idAluno");
                 //JOptionPane.showMessageDialog(null,"id dao aluno recuperado com sucesso");
             }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+                //JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
             }    
         fecharBanco();
         return idaluno;
@@ -158,7 +158,7 @@ public class AlunoControleler extends Conexao{
             }while(rs.next());
             //JOptionPane.showMessageDialog(null,"Pesquisa realizada com sucesso em todos os alunos");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"erro na pesquisa de todos os alunos"+ex.getMessage());
+            //JOptionPane.showMessageDialog(null,"erro na pesquisa de todos os alunos"+ex.getMessage());
         }
         fecharBanco();
         return arrayAluno;

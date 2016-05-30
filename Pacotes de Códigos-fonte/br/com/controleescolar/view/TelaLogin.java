@@ -185,8 +185,7 @@ public class TelaLogin extends javax.swing.JFrame {
            Sessao sessao = new Sessao();
            sessao.setUsuario(jTextFieldUsuario.getText());
            sessao.setSenha(jPasswordFieldSenha.getText());
-       }
-       
+       } 
     }//GEN-LAST:event_JButtonEntrarActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

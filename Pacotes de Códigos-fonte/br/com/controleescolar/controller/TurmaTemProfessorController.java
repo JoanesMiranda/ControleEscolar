@@ -23,7 +23,7 @@ public class TurmaTemProfessorController extends Conexao{
                 stm.setInt(1, idturma);
                 stm.setInt(2, idprofessor);
                 stm.execute();
-                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela turma_has_professor");
+                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela turma_has_professor");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"erro ao salvar em professor"+ex.getMessage());
             }

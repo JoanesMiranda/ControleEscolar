@@ -25,7 +25,7 @@ public class AlunoTemDisciplinaController extends Conexao{
                 stm.setInt(1, idaluno);
                 stm.setInt(2, iddisciplina);
                 stm.execute();
-                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela AlunoTemDisciplina");
+                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela AlunoTemDisciplina");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"erro ao salvar em AlunoTemDisciplina"+ex.getMessage());
             }

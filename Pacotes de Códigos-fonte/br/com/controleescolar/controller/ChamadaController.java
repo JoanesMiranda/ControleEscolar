@@ -29,7 +29,7 @@ public class ChamadaController extends Conexao{
                 stm.setInt(4, chamada.getIddisciplina());
                 stm.setInt(5, chamada.getIdprofessor());
                 stm.execute();
-                JOptionPane.showMessageDialog(null,"Dados Salvo com Sucesso");
+                //JOptionPane.showMessageDialog(null,"Dados Salvo com Sucesso");
             } catch (SQLException ex) {
                 //JOptionPane.showMessageDialog(null,"erro ao salvar em chamada"+ex.getMessage());
             }

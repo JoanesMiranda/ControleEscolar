@@ -276,6 +276,7 @@ public class TelaCadastroProfessor extends javax.swing.JFrame {
             LoginController cLogin = new LoginController();
             cLogin.salvar(login);
         }
+        JOptionPane.showMessageDialog(rootPane, "Salvo com Sucesso");
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         //Salva o idTurma e o idProfessor na tabela TurmaTemProfessor.
         TurmaController turmaC = new TurmaController();

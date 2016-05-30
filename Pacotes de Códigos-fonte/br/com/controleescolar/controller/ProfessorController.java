@@ -26,7 +26,7 @@ public class ProfessorController extends Conexao{
                 stm.setString(1, professor.getNome());
                 stm.setString(2, professor.getMatricula());
                 stm.execute();
-                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela professor");
+                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela professor");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"erro ao salvar em professor"+ex.getMessage());
             }
@@ -70,7 +70,7 @@ public class ProfessorController extends Conexao{
                 rs.next();
                 nome = rs.getString("nome");
             }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"erro!! ao recuperar dados"+ex);
+                JOptionPane.showMessageDialog(null,"O sistema não possui Professor cadastrado");
             }    
         fecharBanco();
         return nome;

@@ -28,7 +28,7 @@ public class LoginController extends Conexao{
                 stm.setString(2, login.getSenha());
                 stm.setString(3, login.getUsuario());
                 stm.execute();
-                JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela login");
+                //JOptionPane.showMessageDialog(null,"salvo com sucesso na tabela login");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"erro ao salvar em login"+ex.getMessage());
             }

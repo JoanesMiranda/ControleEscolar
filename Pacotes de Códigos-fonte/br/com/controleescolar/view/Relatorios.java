@@ -196,14 +196,12 @@ public class Relatorios extends javax.swing.JFrame {
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         
         try {
-            conecta.execultaSQL("SELECT nome FROM turma WHERE idTurma IN"
-                    + " (SELECT FK_Turma FROM turma_has_professor WHERE FK_Professor ="
-                    + " (SELECT idProfessor FROM professor WHERE nome ='"+jTextFieldNomeProfessor.getText()+"'))");
+            conecta.execultaSQL("SELECT nome FROM aluno WHERE aluno.nome ='"+jTextFieldNomeProfessor.getText()+"'");
             conecta.rs.first();
-            jTextAreaRelatorio.setText("                     Nomes das Turmas: \n\n\n"+
-                    "Turma:   "+conecta.rs.getString("nome"));
+            jTextAreaRelatorio.setText("                     Nomes do Aluno: \n\n\n"+
+                    "Nome:   "+conecta.rs.getString("nome"));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Professor não Cadastrado!  "+ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "Aluno não Cadastrado!  "+ex.getMessage());
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
@@ -232,7 +230,7 @@ public class Relatorios extends javax.swing.JFrame {
 "     `aluno` aluno INNER JOIN `chamada` chamada ON aluno.`idAluno` = chamada.`FK_Aluno`\n" +
 "     INNER JOIN `professor` professor ON chamada.`FK_Professor` = professor.`idProfessor`\n" +
 "     INNER JOIN `turma_has_professor` turma_has_professor ON professor.`idProfessor` = turma_has_professor.`FK_Professor`\n" +
-"     INNER JOIN `turma` turma ON turma_has_professor.`FK_Turma` = turma.`idTurma` WHERE turma.nome = '"+jTextFieldNomeProfessor.getText()+"'");
+"     INNER JOIN `turma` turma ON turma_has_professor.`FK_Turma` = turma.`idTurma` WHERE aluno.nome = '"+jTextFieldNomeProfessor.getText()+"'");
             JRResultSetDataSource relatResul = new JRResultSetDataSource(conecta.rs);
             JasperPrint jpPrint = JasperFillManager.fillReport("C://Users//Joanes//Documents//NetBeansProjects//ControleEscolar//Pacotes de Códigos-fonte//Relatorios/listaPresenca.jasper",new HashMap(),relatResul);
             JasperViewer jv = new JasperViewer(jpPrint,false);

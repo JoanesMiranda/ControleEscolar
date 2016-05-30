@@ -11,6 +11,7 @@ import br.com.controleescolar.controller.DisciplinaController;
 import br.com.controleescolar.controller.TurmaController;
 import br.com.controleescolar.controller.TurmaTemAlunoController;
 import br.com.controleescolar.model.Aluno;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -267,6 +268,7 @@ public class TelaCadastroAluno extends javax.swing.JFrame {
     
     AlunoTemDisciplinaController alunoDisciplina = new AlunoTemDisciplinaController();
     alunoDisciplina.salvar( caluno.insertIdAluno(jTextMatricula.getText()), disciplinaC.insertIdDisciplina(jComboBoxDisciplinas.getSelectedItem().toString()));
+        JOptionPane.showMessageDialog(rootPane, "Salvo com Sucesso");
     ////////////////////////////////////////////////////////////////////////////////////////
     limpaCampos();
     }//GEN-LAST:event_CadastrarActionPerformed

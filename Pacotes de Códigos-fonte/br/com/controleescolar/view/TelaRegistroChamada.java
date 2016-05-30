@@ -399,7 +399,7 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         //Recebe todos os valores dos cartões e passar para os campos de falta dos alunos
-     String nome = "c://cliente.txt";
+     String nome = "F:/ARDUINO.TXT";
 
      try {
          FileReader arq = new FileReader(nome);
