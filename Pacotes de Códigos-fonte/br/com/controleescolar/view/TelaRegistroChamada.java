@@ -399,7 +399,6 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         //Recebe todos os valores dos cartões e passar para os campos de falta dos alunos
      String nome = "c://cliente.txt";
 
-     System.out.printf("\nConteúdo do arquivo texto:\n");
      try {
          FileReader arq = new FileReader(nome);
          BufferedReader lerArq = new BufferedReader(arq);
@@ -408,7 +407,6 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
          // a variável "linha" recebe o valor "null" quando o processo
          // de repetição atingir o final do arquivo texto
          while (linha != null) {
-             //System.out.printf("%s\n", linha);
              Sessao s = new Sessao();
              s.setLinha(linha);
 
@@ -425,11 +423,19 @@ public class TelaRegistroChamada extends javax.swing.JFrame {
         AlunoControleler alunoC = new AlunoControleler();
 
         DefaultTableModel NomesDosAlunos = (DefaultTableModel) jTableNomesDosAlunos.getModel();
+        
+        int cont = 0;
         for(int i = 0; i < valores; i++){
             int idAlunoArduino = alunoC.pesquisaIdAlunoArduino(s.getLinha());
-            if(idAlunoArduino == alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0))){
-                NomesDosAlunos.removeRow(4);
-                NomesDosAlunos.insertRow(4,new Object[]{alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(4),"P"} );
+            int idaluno = alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0));
+          
+            while(idAlunoArduino != idaluno){
+                  cont++;
+                  break;
+            }
+           if(idAlunoArduino == alunoC.pesquisaIdAluno((String) jTableNomesDosAlunos.getModel().getValueAt(i, 0))){
+               NomesDosAlunos.removeRow(cont);
+               NomesDosAlunos.insertRow(cont,new Object[]{alunoC.pesquisaTodosAlunos((String) jComboBoxSelecionarTurma.getSelectedItem()).get(cont),"F"} );
             }
         }
         s.closeAduino();
